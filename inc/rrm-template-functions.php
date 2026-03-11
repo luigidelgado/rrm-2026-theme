@@ -3750,9 +3750,9 @@ function delete_post_gallery() {
     if((int)$wheelerId == (int)$user_id_logged){
         $deleteStatusPost = wp_delete_post($post_id, false);
         if($deleteStatusPost){
-            $results = $wpdb->get_results( "SELECT id FROM wphr_galerias_migration WHERE id_new = $post_id" );
-            foreach ($results as $galeria) { 
-                $wpdb->query($wpdb->prepare("DELETE FROM wphr_galerias_migration WHERE id = '$galeria->id' "));
+            $results = $wpdb->get_results( $wpdb->prepare( "SELECT id FROM wphr_galerias_migration WHERE id_new = %d", $post_id ) );
+            foreach ($results as $galeria) {
+                $wpdb->query( $wpdb->prepare( "DELETE FROM wphr_galerias_migration WHERE id = %d", $galeria->id ) );
             }
         }
     }

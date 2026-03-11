@@ -789,7 +789,7 @@ function rrm_desafios_usuario($user_id){
   global $wpdb;
   $countParent = 0;
   $countTotalChild = 0;
-  $result = $wpdb->get_results( "SELECT DISTINCT id_reto FROM wphr_galerias_migration WHERE id_user = $user_id" );
+  $result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT id_reto FROM wphr_galerias_migration WHERE id_user = %d", $user_id ) );
   foreach ($result as $desafio) {
     $countTotalChild += rrm_galerias_usuario($user_id,$desafio->id_reto);
   }
@@ -800,7 +800,7 @@ function rrm_desafios_usuario($user_id){
 function rrm_galerias_usuario($user_id,$id_reto){
   global $wpdb;
   $galerias_reto = 0;
-  $result = $wpdb->get_results( "SELECT id_new FROM wphr_galerias_migration WHERE id_user = $user_id AND id_reto = $id_reto" );
+  $result = $wpdb->get_results( $wpdb->prepare( "SELECT id_new FROM wphr_galerias_migration WHERE id_user = %d AND id_reto = %d", $user_id, $id_reto ) );
   $galerias_reto = count($result);
   return $galerias_reto;
 }
@@ -810,11 +810,11 @@ function rrm_user_level($user_id){
   $desafios = 0;
   $galerias = 0;
   $pueblos = 0;
-  $result = $wpdb->get_results( "SELECT DISTINCT id_reto FROM wphr_galerias_migration WHERE id_user = $user_id" );
+  $result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT id_reto FROM wphr_galerias_migration WHERE id_user = %d", $user_id ) );
   foreach ($result as $desafio) {
     $galerias += rrm_galerias_usuario($user_id,$desafio->id_reto);
   }
-  $resPueblos = $wpdb->get_results( "SELECT id_reto FROM wphr_galerias_migration WHERE id_user = $user_id AND id_reto = 26513" );
+  $resPueblos = $wpdb->get_results( $wpdb->prepare( "SELECT id_reto FROM wphr_galerias_migration WHERE id_user = %d AND id_reto = 26513", $user_id ) );
   if($resPueblos){
     $pueblos = count($resPueblos);
   }
@@ -1092,9 +1092,9 @@ function pending_posts( $new_status, $old_status, $post ) {
       }
     }
     save_new_alert($user_id, 'galeria', 'La evidencia del desafio '.get_the_title($reto).', '.$destino.'  no ha sido aprobada.');
-    $results = $wpdb->get_results( "SELECT id FROM wphr_galerias_migration WHERE id_new = $post->ID" );
-    foreach ($results as $galeria) { 
-       $wpdb->query($wpdb->prepare("DELETE FROM wphr_galerias_migration WHERE id = '$galeria->id' "));
+    $results = $wpdb->get_results( $wpdb->prepare( "SELECT id FROM wphr_galerias_migration WHERE id_new = %d", $post->ID ) );
+    foreach ($results as $galeria) {
+       $wpdb->query( $wpdb->prepare( "DELETE FROM wphr_galerias_migration WHERE id = %d", $galeria->id ) );
     }
     $user = get_userdata( $user_id );
     send_mail_notification($user->user_email, 'Evidencia No Aprobada', 'La evidencia del desafio '.get_the_title($reto).', '.$destino.'  no ha sido aprobada.'.'<br/>'.'El motivo es el siguiente: '.(get_field('aprobacion', $post->ID) ? get_field('aprobacion', $post->ID) : 'La imagen esta siendo revisada por el administrador.'),$user->display_name);
@@ -1110,9 +1110,9 @@ function pending_posts( $new_status, $old_status, $post ) {
     $wpdb->insert( $tableGalerias, $data);
   }
   else if ( ( 'publish_to_trash' === $new_status || 'trash' === $new_status) && 'galerias' === $post->post_type ) {
-    $results = $wpdb->get_results( "SELECT id FROM wphr_galerias_migration WHERE id_new = $post->ID" );
-    foreach ($results as $galeria) { 
-       $wpdb->query($wpdb->prepare("DELETE FROM wphr_galerias_migration WHERE id = '$galeria->id' "));
+    $results = $wpdb->get_results( $wpdb->prepare( "SELECT id FROM wphr_galerias_migration WHERE id_new = %d", $post->ID ) );
+    foreach ($results as $galeria) {
+       $wpdb->query( $wpdb->prepare( "DELETE FROM wphr_galerias_migration WHERE id = %d", $galeria->id ) );
     }
   }
 }

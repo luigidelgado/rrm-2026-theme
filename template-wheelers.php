@@ -43,9 +43,9 @@
     }
 
     if (isset($_GET['search'])) {
-        $paramSearch = $_GET['search'];
+        $paramSearch = sanitize_text_field( wp_unslash( $_GET['search'] ) );
     }
-    
+
     /*$args = array(
         'role' => 'Subscriber',  
         'number' => $no, 
@@ -76,10 +76,29 @@
 
     //$query = "SELECT u.ID,u.display_name,u.user_registered,MAX(CASE WHEN um.meta_key = 'first_name' THEN meta_value END) AS first_name, MAX(CASE WHEN um.meta_key = 'last_name' THEN meta_value END) AS last_name, COUNT(gal.id) AS fotos FROM $wpdb->users AS u LEFT JOIN wphr_galerias_migration AS gal ON u.ID = gal.id_user LEFT JOIN wphr_usermeta AS um ON u.ID = um.user_id WHERE (display_name LIKE \"%$paramSearch%\") AND u.ID NOT IN (SELECT user_id FROM wphr_usermeta WHERE meta_key = 'pm_profile_privacy' AND meta_value = 5) GROUP BY u.ID";
 
-    $query = "SELECT u.ID,u.display_name,u.user_registered,MAX(CASE WHEN um.meta_key = 'first_name' THEN meta_value END) AS first_name, MAX(CASE WHEN um.meta_key = 'last_name' THEN meta_value END) AS last_name, COUNT(distinct gal.id) AS fotos FROM $wpdb->users AS u LEFT JOIN wphr_galerias_migration AS gal ON u.ID = gal.id_user LEFT JOIN wphr_usermeta AS um ON u.ID = um.user_id WHERE (display_name LIKE \"%$paramSearch%\") AND u.ID NOT IN (SELECT user_id FROM wphr_usermeta WHERE meta_key = 'pm_profile_privacy' AND meta_value = 5) GROUP BY u.ID";
-    $results = $wpdb->get_results( $query ." ORDER BY ".$orderBy." ".$order." LIMIT ${offset}, ${no}");
-    $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
-    $total_user = $wpdb->get_var($total_query);
+    $like_search  = '%' . $wpdb->esc_like( $paramSearch ) . '%';
+    $offset_int   = (int) $offset;
+    $no_int       = (int) $no;
+    $query = $wpdb->prepare(
+        "SELECT u.ID,u.display_name,u.user_registered,
+            MAX(CASE WHEN um.meta_key = 'first_name' THEN meta_value END) AS first_name,
+            MAX(CASE WHEN um.meta_key = 'last_name' THEN meta_value END) AS last_name,
+            COUNT(distinct gal.id) AS fotos
+        FROM {$wpdb->users} AS u
+        LEFT JOIN wphr_galerias_migration AS gal ON u.ID = gal.id_user
+        LEFT JOIN {$wpdb->usermeta} AS um ON u.ID = um.user_id
+        WHERE (display_name LIKE %s)
+        AND u.ID NOT IN (
+            SELECT user_id FROM {$wpdb->usermeta}
+            WHERE meta_key = 'pm_profile_privacy' AND meta_value = 5
+        )
+        GROUP BY u.ID",
+        $like_search
+    );
+    // $orderBy y $order provienen de whitelist de valores permitidos (seguro).
+    $results     = $wpdb->get_results( $query . " ORDER BY {$orderBy} {$order} LIMIT {$offset_int}, {$no_int}" );
+    $total_query = "SELECT COUNT(1) FROM ({$query}) AS combined_table";
+    $total_user  = $wpdb->get_var( $total_query );
     //$total_user = count($results);  
     $total_pages = ceil($total_user/$no);
     $end = $no * $paged;
