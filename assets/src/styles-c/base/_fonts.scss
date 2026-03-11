@@ -1,0 +1,236 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?cooctt');
+    src:  url('../fonts/icomoon.eot?cooctt#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?cooctt') format('truetype'),
+      url('../fonts/icomoon.woff?cooctt') format('woff'),
+      url('../fonts/icomoon.svg?cooctt#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-deliver:before {
+    content: "\e945";
+  }
+  
+  .icon-fb-icon-fill:before {
+    content: "\e940";
+  }
+  .icon-yutube-fill:before {
+    content: "\e941";
+  }
+  .icon-twitter-fill:before {
+    content: "\e942";
+  }
+  .icon-instagra-fill:before {
+    content: "\e943";
+  }
+  .icon-eye-lookproduct:before {
+    content: "\e93f";
+  }
+  .icon-shoppingcartplus:before {
+    content: "\e93e";
+  }
+  .icon-account_circle:before {
+    content: "\e900";
+  }
+  .icon-account_circle-fill:before {
+    content: "\e901";
+  }
+  .icon-achievements:before {
+    content: "\e902";
+  }
+  .icon-add_a_photo:before {
+    content: "\e903";
+  }
+  .icon-add:before {
+    content: "\e904";
+  }
+  .icon-add-fill:before {
+    content: "\e905";
+  }
+  .icon-arrow_back_ios:before {
+    content: "\e906";
+  }
+  .icon-arrow:before {
+    content: "\e907";
+  }
+  .icon-arrow_forward_ios:before {
+    content: "\e908";
+  }
+  .icon-badge:before {
+    content: "\e909";
+  }
+  .icon-bike:before {
+    content: "\e90a";
+  }
+  .icon-block:before {
+    content: "\e90b";
+  }
+  .icon-brotherhood:before {
+    content: "\e90c";
+  }
+  .icon-cancel:before {
+    content: "\e90d";
+  }
+  .icon-check_circle:before {
+    content: "\e90e";
+  }
+  .icon-check_circle-fill:before {
+    content: "\e90f";
+  }
+  .icon-church:before {
+    content: "\e910";
+  }
+  .icon-close_fullscreen:before {
+    content: "\e911";
+  }
+  .icon-close:before {
+    content: "\e912";
+  }
+  .icon-delete:before {
+    content: "\e913";
+  }
+  .icon-download:before {
+    content: "\e914";
+  }
+  .icon-edit_square:before {
+    content: "\e915";
+  }
+  .icon-expand_more:before {
+    content: "\e916";
+  }
+  .icon-fact_check:before {
+    content: "\e917";
+  }
+  .icon-fullscreen_exit:before {
+    content: "\e918";
+  }
+  .icon-fullscreen:before {
+    content: "\e919";
+  }
+  .icon-gallery:before {
+    content: "\e91a";
+  }
+  .icon-gear:before {
+    content: "\e91b";
+  }
+  .icon-goal:before {
+    content: "\e91c";
+  }
+  .icon-helmet:before {
+    content: "\e91d";
+  }
+  .icon-help:before {
+    content: "\e91e";
+  }
+  .icon-lock:before {
+    content: "\e91f";
+  }
+  .icon-logout:before {
+    content: "\e920";
+  }
+  .icon-map:before {
+    content: "\e921";
+  }
+  .icon-medal:before {
+    content: "\e922";
+  }
+  .icon-menu:before {
+    content: "\e923";
+  }
+  .icon-menu_open:before {
+    content: "\e924";
+  }
+  .icon-more:before {
+    content: "\e925";
+  }
+  .icon-notifications:before {
+    content: "\e926";
+  }
+  .icon-notifications-fill:before {
+    content: "\e927";
+  }
+  .icon-mail:before {
+    content: "\e928";
+  }
+  .icon-pause:before {
+    content: "\e929";
+  }
+  .icon-phone_in_talk:before {
+    content: "\e92a";
+  }
+  .icon-piston:before {
+    content: "\e92b";
+  }
+  .icon-play:before {
+    content: "\e92c";
+  }
+  .icon-quote:before {
+    content: "\e92d";
+  }
+  .icon-search:before {
+    content: "\e92e";
+  }
+  .icon-settings:before {
+    content: "\e92f";
+  }
+  .icon-share:before {
+    content: "\e930";
+  }
+  .icon-shopping_cart:before {
+    content: "\e931";
+  }
+  .icon-shopping_cart-fill:before {
+    content: "\e932";
+  }
+  .icon-star:before {
+    content: "\e933";
+  }
+  .icon-substract:before {
+    content: "\e934";
+  }
+  .icon-task:before {
+    content: "\e935";
+  }
+  .icon-up:before {
+    content: "\e936";
+  }
+  .icon-uploadpic:before {
+    content: "\e937";
+  }
+  .icon-verified:before {
+    content: "\e938";
+  }
+  .icon-vest-fill:before {
+    content: "\e939";
+  }
+  .icon-whatsapp:before {
+    content: "\e93a";
+  }
+  .icon-where_to:before {
+    content: "\e93b";
+  }
+  .icon-zoom_in:before {
+    content: "\e93c";
+  }
+  .icon-zoom_out:before {
+    content: "\e93d";
+  }
+  

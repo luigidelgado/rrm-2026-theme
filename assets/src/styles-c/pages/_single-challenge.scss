@@ -1,0 +1,131 @@
+.single-challenge-content{
+    display: grid;
+    margin-top: 25px;
+    margin-bottom: 60px;
+    @media only screen and (min-width: 768px){
+        grid-template-columns: repeat(12,1fr);
+        column-gap: 30px;
+        margin-top: 80px;
+        margin-bottom: 0px;
+    }
+    main{
+        grid-column: 1 / 9;
+        @media only screen and (min-width: 992px){
+            grid-column: 2 / 9;
+        }
+    }
+    aside{
+        grid-column: 9 / -1;
+        @media only screen and (min-width: 992px){
+            grid-column: 9 / 12;
+        }
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+        align-items: flex-end;
+    }
+    &__the-content {
+        p,span,div,li{
+            font-size: 12px;
+            font-family: $lato;
+            color: $gray2;
+        }
+        li{
+            margin-bottom: 10px;
+        }
+        > h2,h3,h4,h5,h6{
+            font-size: 18px;
+            font-family: $lato;
+            color: $white;
+        }
+    }
+    &__defined{
+        display: flex;
+        align-items: center;
+        column-gap: 50px;
+        flex-wrap: wrap;
+        >div{
+            padding: 20px 45px;
+            h3{
+                font-size: 12px;
+                color: $secondary-color;
+                text-transform: uppercase;
+                margin: 0;
+            }
+            p{
+                font-size: 18px;
+                color: $white;
+            }
+        }
+      
+    }
+    &__patch{
+        >div{
+            display: flex;
+            column-gap: 30px;
+            align-items: center;
+        }
+      
+    }
+}
+
+.challengue-roads{
+    margin-block: 30px 35px;
+    h3{
+        text-transform: uppercase;
+        font-size: 18px;
+        color: $white;
+    }
+}
+
+.challengue-roads-table{
+    border: 1px solid $black3;
+    border-radius: 8px;
+    font-family: $lato;
+    font-size: 12px;
+    >div{
+        display: grid;
+        column-gap: 10px;
+        width: 100%;
+        grid-template-columns: auto 3fr 1.5fr;
+        color: $text-color-p;
+        @media only screen and (min-width: 577px){
+            row-gap: 10px;
+        }
+        &:first-child{
+            div{
+                padding-block-start: 5px;
+            }
+        }
+        &:last-child{
+            div{
+                padding-block-end: 10px;
+            }
+        }
+        div{
+            padding-block: 3px;
+            padding-inline: 10px;
+            &:first-child{
+                padding-inline: 15px 0;
+            }
+            &:nth-child(2){
+                @media only screen and (max-width: 576px){
+                    border-left: 1px solid $black3; 
+                }
+            }
+            &:last-child{
+                text-transform: uppercase;
+                border-left: 1px solid $black3;
+                @media only screen and (max-width: 576px){
+                    border-top: 0;
+                    grid-row-start: 2;
+                    grid-column: 2 / -1;
+                }
+            }
+        }
+        &:nth-child(even){
+            background-color: $black3;
+        }
+       
+    }
+}

@@ -1,0 +1,44 @@
+//////////////
+/////MIXINS///
+/////////////
+
+@mixin primary-button($h,$w,$fs,$p) {
+	display: flex;
+	justify-content: center;
+	width: $w;
+	height: $h;
+	background-color: $secondary-color;
+	font-family: $teko;
+	font-size: $fs;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	letter-spacing: normal;
+	color: $white;
+	text-transform: uppercase;
+	padding: $p;
+	&:hover{
+		background-color: $secondary-dark;
+		color: $white;
+	}
+}
+
+@mixin secondary-button($h,$w,$bgc,$fs) {
+	height: $h;
+	min-width: $w;
+	border-radius: 9px;
+	border: 1px solid $white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $bgc;
+	a{
+		font-size: $fs;
+		text-transform: uppercase;
+		color: $white;
+		letter-spacing: 3px;
+		font-weight: 300;
+		font-stretch: condensed;
+	}
+
+}

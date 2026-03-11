@@ -1,0 +1,234 @@
+.login-content{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    padding-block-end: 100px;
+    margin-top: -160px;
+    position: relative;
+    z-index: 2;
+}
+
+.page-template-template-fullwidth article[id^=post-] .entry-content{
+    .woocommerce-form-login-content{
+        h2{
+            margin-block-start: 0px;
+        }
+    }
+}
+
+.woocommerce-form-login-content{
+    margin-inline: auto;
+    max-width: 315px;
+}
+
+.woocommerce-form-login{
+    .woocommerce-form__label-for-checkbox{
+        display: flex;
+    }
+    .show-password-input{
+        color: $text-color-p;
+        left: 10px;
+        position: absolute;
+        top: 15px;
+        padding: 0;
+        line-height: 1;
+    }
+    .username-content{
+        position: relative;
+        display: block;
+        i{
+            color: $text-color-p;
+            left: 10px;
+            position: absolute;
+            top: 15px;
+            padding: 0;
+            line-height: 1;
+        }
+    }
+    .woocommerce-form-row{
+        input[type="text"],[type="email"],[type="password"]{
+            @extend .input-rrm;
+            padding-inline-start: 35px;
+            width: 100%;
+            &:focus{
+                border: 1px solid $secondary-color;
+            }
+            &::-webkit-input-placeholder,&::-ms-input-placeholder, &::-moz-input-placeholder,&::placeholder{
+                //font-family: 'icomoon';
+                font-size: 12px;
+                //height: 15px;
+                font-family: inherit;
+            }
+        }
+    }
+    button[type="submit"]{
+        font-family: Teko, sans-serif;   
+        @extend .flex-center;
+        background-color: $secondary-color;
+        min-height: 40px;
+        min-width: 110px;
+        max-width: inherit;
+        padding: 10px;
+        color: $white;
+        width: max-content;
+        font-size: 12px;
+        text-transform: uppercase;
+        transition: all 0.2s ease-in;
+        font-weight: 300;
+        //width: 100%;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        &:hover{
+            background-color: $secondary-dark;
+        }
+        
+    }
+    
+}
+
+
+.pmagic{
+    .pm-login-box{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 2;
+        .pm-login-box-error{
+            background-color: $secondary-color;
+            letter-spacing: 1px;
+            margin-block-end: 10px;
+        }
+        .pm-login-header-buttons{
+            a{
+                color: $white;
+            }   
+        }
+    }
+    &.rrm{
+        fieldset{
+            background-color: transparent;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    &.login{
+        .pm-login-header-buttons{
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            a{
+                flex: 1;
+                @extend .flex-center;
+                background-color: $secondary-color;
+                min-height: 40px;
+                min-width: 110px;
+                max-width: inherit;
+                padding: 10px;
+                color: $white;
+                width: max-content;
+                font-size: 12px;
+                text-transform: uppercase;
+                transition: all 0.2s ease-in;
+                font-weight: 300;
+                width: 100%;
+                border: none;
+                outline: none;
+                box-shadow: none;
+                &:hover{
+                    background-color: $secondary-dark;
+                }
+                &:first-child{
+                   background-color: $black4; 
+                }
+            }
+        }
+        .create-account{
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $text-color-p;
+            display: flex;
+            justify-content: flex-end;
+            margin-block-end: 15px;
+            flex: 1 0 100%;
+        }
+        .pm-login-box{
+            margin-inline: auto;
+            max-width: 315px;
+            form{
+            
+                .pm-row{
+                    margin-block-end: 15px;
+                    width: 100%;
+                }
+                .pm-login-links-box{
+                    text-align: right;
+                    margin-block-end: 15px;
+                    a{
+                       
+                        color: $yellow;
+                    }
+    
+                }
+                .pm-field-input{
+                    width: 100%;
+                    position: relative;
+                    float: none;
+                    i{
+                        position: absolute;
+                        top: 15px;
+                        left: 10px;
+                        color: $text-color-p;
+                        &.icon-lock{
+                            padding: 14px 12px;
+                            top: 0;
+                            left: 0px;
+                        }
+                    }
+                    input[type="text"],[type="email"],[type="password"]{
+                        @extend .input-rrm;
+                        padding-inline-start: 35px !important;
+                        margin: 0 !important;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        &:focus{
+                            border: 1px solid $secondary-color;
+                        }
+                        &::-webkit-input-placeholder,&::-ms-input-placeholder, &::-moz-input-placeholder,&::placeholder{
+                            //font-family: 'icomoon';
+                            font-size: 12px;
+                            //height: 15px;
+                            font-family: inherit;
+                        }
+                    }
+                   
+                }
+                input[type="submit"]{
+                    @extend .flex-center;
+                    background-color: $secondary-color;
+                    min-height: 40px;
+                    min-width: 110px;
+                    max-width: inherit;
+                    padding: 10px;
+                    color: $white;
+                    width: max-content;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    transition: all 0.2s ease-in;
+                    font-weight: 300;
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    box-shadow: none;
+                    &:hover{
+                        background-color: $secondary-dark;
+                    }
+                }
+            }
+        }
+       
+    }
+}

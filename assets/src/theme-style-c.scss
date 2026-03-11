@@ -1,0 +1,45 @@
+@use "normalize.css/normalize.css";
+
+@import
+  'abstracts/variables',
+  'abstracts/extends',
+  'abstracts/mixins';
+
+
+@import
+  'styles-c/base/fonts',
+  'styles-c/abstracts/mixins',
+  'styles-c/components/pagination',
+  'styles-c/components/breadcrumb',
+  'styles-c/components/intro-header',
+  'styles-c/components/title-rrm',
+  'styles-c/components/challenges-rrm',
+  'styles-c/components/blockquote',
+  'styles-c/components/benefits',
+  'styles-c/components/sorting',
+  'styles-c/components/home-salon-fama',
+  'styles-c/pages/home',
+  'styles-c/pages/archive',
+  'styles-c/pages/single',
+  'styles-c/pages/archive-challenges',
+  'styles-c/pages/history',
+  'styles-c/pages/patches',
+  'styles-c/pages/order',
+  'styles-c/pages/faq',
+  'styles-c/pages/contact',
+  'styles-c/pages/hall-of-fame',
+  'styles-c/pages/membership',
+  'styles-c/pages/gallery',
+  'styles-c/pages/register',
+  'styles-c/pages/404',
+  'styles-c/pages/archive-products',
+  'styles-c/pages/login',
+  'styles-c/pages/recover-password',
+  'styles-c/pages/wheelers',
+  'styles-c/pages/single-challenge',
+  'styles-c/pages/checkout',
+  'styles-c/pages/cart',
+  'styles-c/pages/single-product',
+  'styles-c/pages/profile',
+  'styles-c/themes/default';
+

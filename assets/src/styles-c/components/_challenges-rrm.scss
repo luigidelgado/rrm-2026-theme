@@ -1,0 +1,62 @@
+.challenges-rrm{
+    height: 375px;
+    display: grid;
+    color: $white;
+    text-align: center;
+    margin-bottom: 40px;
+    @media screen and(min-width: 768px) {
+        margin-bottom: 80px;
+    }
+    &__img, &__content{
+        grid-area: 1 / -1;
+    }
+    &__img{
+        height: inherit;
+        img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &__content{
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        max-width: 415px;
+        padding-inline: 30px;
+        margin-inline: auto;
+        >span{
+            font-size: 12px;
+            letter-spacing: 2.76px;
+            text-transform: uppercase;
+        }
+        h3{
+            margin-block-start: 10px;
+            font-size: 38px;
+            line-height: 1;
+            text-transform: uppercase;
+            font-weight: 400;
+            @media only screen and (min-width: 768px){
+                font-size: 50px;
+            }
+        }
+        a{
+            @extend .flex-center;
+            background-color: $secondary-color;
+            min-height: 40px;
+            min-width: 110px;
+            max-width: inherit;
+            padding: 10px;
+            color: $white;
+            width: max-content;
+            margin-inline: auto;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in;
+            &:hover{
+                background-color: $secondary-dark;
+            }
+        }
+    }
+  
+}

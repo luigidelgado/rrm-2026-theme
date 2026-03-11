@@ -1,0 +1,243 @@
+img{
+    border-radius: 0;
+}
+
+.container-grid{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+}
+
+.woocommerce-notices-wrapper{
+    margin-block-start: 40px;
+}
+
+body{
+    .woocommerce-message, .woocommerce-info, .woocommerce-error, .woocommerce-noreviews, p.no-comments{
+        @media screen and (max-width: 767px) {
+            margin-bottom: 20px;
+        }
+    }
+    &.admin-bar{
+        @media only screen and (max-width: 576px){
+            padding-top: 46px;
+        }
+        padding-top: 32px;
+    }
+}
+
+#page{
+    >header{
+        position: relative;
+        z-index: 3;
+    }
+}
+
+
+.mobile-menu-container{
+    &.menu-mobile-top{
+        margin-top: 46px;
+    }
+}
+
+.post-10833{
+    margin-top: 40px;
+    .entry-header{
+        h1{
+            font-size: 30px;
+            color: $white;
+            display: none;
+        }
+    }
+    .entry-content{
+        p{
+            font-size: 30px;
+            color: $white;
+            text-align: center;
+        }
+    }
+}
+
+// .rr_header{
+//     .rr_logo{
+//         a{
+//             img{
+//                 max-width: 50%;
+//             }
+//         }
+//     }
+// } 
+
+.rr_logo_mobile{
+    a{
+        img{
+            max-width: 62px;
+        }
+    }
+}
+
+// .page-template-template-fullwidth{
+//     &.privacy-policy{
+//         article{
+//             font-family: $lato;
+//             margin-block-start: 50px;
+//         }
+//         .entry-header{
+//             h1{
+//                 font-size: 30px;
+//                 color: $white;
+//                 display: none;
+//             }
+//         }
+//         .entry-content{
+//             p{
+//                 font-size: 14px;
+//                 color: $white;
+//                 margin-block: 10px;
+//             }
+//             a{
+//                 color: $secondary-color;
+//             }
+//         }
+//     }
+// }
+
+.page-template-template-fullwidth{
+    &.page-id-26{
+        .entry-header{
+            display: none;
+        }
+        .entry-content{
+            margin-block-start: 50px;
+            h2,h3,h4,h5,h6{
+                color: $white;
+                margin-block-start: 40px;
+            }
+            ul,li,div,p{
+                font-size: 18px;
+                color: $white;
+                margin-block: 10px;
+            }
+            a{
+                color: $secondary-color;
+            }
+        }
+    }
+}
+
+.page-template-template-custom-rrm{
+    //&.page-id-184517,&.page-id-184514,&.page-id-184529,&.page-id-184508,&.page-id-184511,&.page-id-184505{
+        article{
+            &[id^="post-"]{
+                font-family: $lato;
+                margin-block-start: 50px;
+                .entry-header{
+                    display: none;
+                }
+                .entry-content{
+                    h2,h3,h4,h5,h6{
+                        color: $white;
+                        margin-block-start: 40px;
+                    }
+                    ul,li,div,p{
+                        font-size: 14px;
+                        color: $white;
+                        margin-block: 10px;
+                    }
+                    a{
+                        color: $secondary-color;
+                    }
+                }
+            }
+           
+           
+        }
+    //}
+  
+}
+
+
+.banner-rrm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    &.bottom-slider-home,&.between-extreme-challengue-halloffame-home,&.between-challengue-blog-home{
+        margin-block-start: 50px;
+    }
+    &.bottom-blog{
+        margin-block-end: 70px;
+    }
+    // &.sidebar-blog{
+        
+    // }
+    .widget{
+        margin: 0;
+    }
+}
+
+.tnp-form{
+    .tnp-field{
+        label{
+            color: $white;
+        }
+    }
+    & + p + p{
+        a{
+            color: $secondary-color;  
+        }
+    }
+}
+
+//Modal
+
+.modal-body{
+    .success{
+        padding-block-start: 50px;
+        padding-block-end: 20px;
+        display: flex;
+        align-items: center;
+        i{
+            margin: 10px;
+            color: #2C9678;
+        }
+    }
+}
+
+.page-template-template-welcome-user{
+    .intro-header{
+        @media only screen and (min-width: 768px){
+            height: 250px;
+        }
+    }
+}
+
+.welcome-user{
+    font-size: 26px;
+    color: white;
+    max-width: 700px;
+    margin-inline: auto;
+    margin-block-end: 80px;
+    margin-block-start: 50px;
+    h1,h2,h3{
+        font-size: 40px;
+    }
+    p{
+        margin-block: 10px;
+    }
+}
+
+.woocommerce .wc-memberships-restriction-message {
+    font-size: 16px;
+    font-family: 'Teko';
+}
+
+
+.archive-posts{
+    .page-header-search{
+        h2{
+            color: #FFF;
+            font-size: 35px;
+        }
+    }
+}

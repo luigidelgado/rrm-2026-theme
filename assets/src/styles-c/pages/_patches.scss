@@ -1,0 +1,247 @@
+.patches{
+    margin-block-start: 30px;
+    margin-block-end: 50px;
+    @media only screen and (min-width: 768px){
+        margin-block-start: 70px;
+    }
+    .patch-container{
+        display: flex;
+        //flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .patch-row{
+        flex: 1 0 100%;
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        gap: 30px;
+        justify-items: center;
+        margin-block-end: 10px;
+        @media only screen and (min-width: 768px) and (max-width: 992px){
+            align-items: center;
+        }
+        @media only screen and (min-width: 768px){
+            justify-items: start;
+        }
+        h2,h3,h4,h5,h6{
+            font-size: 45px;
+            color: $white;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-block-start: 30px;
+            span{
+                color: $secondary-color;
+            }
+            @media only screen and (min-width: 768px){
+                font-size: 50px;
+            }
+        }
+        p{
+            font-size: 14px;
+            font-family: $lato;
+            color: $gray2;
+            line-height: 1.25;
+            letter-spacing: 0.24px;
+            margin-block-end: 20px;
+            font-weight: 300;
+            &:last-child{
+                margin-block-end: 0px;
+            }
+        }
+
+        a{
+            @extend .flex-center;
+            background-color: $secondary-color;
+            min-height: 40px;
+            min-width: 110px;
+            max-width: inherit;
+            padding: 10px;
+            color: $white;
+            width: max-content;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in;
+            margin-block-end: 20px;
+            &:hover{
+                background-color: $secondary-dark;
+            }
+        }
+        &:nth-child(even){
+            >div{
+                grid-column: 1 / -1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 2 / 7;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 7 / 12;
+                    }
+                }
+            }
+        }
+        &:nth-child(odd){
+            >div{
+                grid-column: 1 / -1;
+                order: 1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 6 / 12;
+                    grid-row: 1 / 2;
+                    order: -1;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 2 / 6;
+                    }
+                }
+            }
+        }
+        &:first-child{
+            >div{
+                grid-column: 1 / -1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 2 / 7;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 7 / 12;
+                    }
+                }
+            }
+        }
+        &:nth-child(2){
+            >div{
+                grid-column: 1 / -1;
+                order: 1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 6 / 12;
+                    grid-row: 1 / 2;
+                    order: -1;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 2 / 6;
+                    }
+                }
+            }
+        }
+        &:nth-child(3){
+            @media only screen and (min-width: 768px){
+                grid-template-columns: repeat(24, 1fr);
+            }
+            >div{
+                grid-column: 1 / -1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 6 / 15;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 15 / 26;
+                    }
+                }
+            }
+        }
+        &:nth-child(4), &:nth-child(7){
+            >div{
+                grid-column: 1 / -1;
+                order: 1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 7 / 12;
+                    grid-row: 1 / 2;
+                    order: -1;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 1 / 7;
+                    }
+                }
+            }
+        }
+        &:nth-child(5),&:nth-child(6){
+            gap: 10px;
+            @media only screen and (min-width: 768px){
+                flex: 1;
+            }
+            >div{
+                grid-column: 1 / -1;
+                order: 1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 2 / 7;
+                    grid-row: 1 / 2;
+                    order: -1;
+                }
+                
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 7 / 13;
+                    }
+                }
+            }
+        }
+        &:nth-child(7){
+            >div{
+                @media only screen and (min-width: 768px){
+                    grid-column: 7 / 14;
+                }
+            }
+            >div{
+                &:last-child{
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    @media only screen and (min-width: 768px){
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+        &:nth-child(8){
+            >div{
+                grid-column: 1 / -1;
+                @media only screen and (min-width: 768px){
+                    grid-column: 2 / 7;
+                }
+            }
+            >div{
+                &:last-child{
+                    grid-column: 1 / -1;
+                    @media only screen and (min-width: 768px){
+                        grid-column: 7 / 13;
+                    }
+                }
+            }
+
+        }
+
+    }
+    blockquote{
+        max-width: 870px;
+        padding-inline: 20px;
+        text-align: center;
+    }
+}

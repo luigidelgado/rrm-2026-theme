@@ -1,0 +1,125 @@
+.input-rrm{
+    height: 42px;
+    background-color: $black2;
+    border-radius: 8px;
+    color: $text-color-p;
+    font-family: $lato;
+}
+
+.register-content{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    padding-block: 50px 100px;
+    margin-top: -210px;
+}
+
+//.pmagic .pg-group-reg-form .pmrow .pm-field-input input[type="text"]
+.pmagic{
+    &.rrm{
+        fieldset{
+            background-color: transparent;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    .pmagic-session-init{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-block-end: 10px;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    &.register{
+        .session-init{
+            display: flex;
+            justify-content: flex-end;
+            color: $secondary-color;
+            //margin-block-end: 15px;
+        }
+        .pg-group-reg-form{
+            position: relative;
+            //top: -50px;
+            display: flex;
+            justify-content: center;
+            form{
+                max-width: 315px;
+                margin-inline: auto;
+                legend{
+                    display: none;
+                }
+                .pmrow{
+                    //float: none;
+                    margin-bottom: 15px;
+                    .pm-field-lable{
+                        width: 0;
+                        visibility: hidden;
+                        margin: 0;
+                        height: 0;
+                        label{
+                            margin: 0;
+                        }
+                    }
+                    .pm-field-input{
+                        width: 100%;
+                        position: relative;
+                        i{
+                            position: absolute;
+                            top: 15px;
+                            left: 10px;
+                            color: $text-color-p;
+                        }
+                        input[type="text"],[type="email"],[type="password"]{
+                            @extend .input-rrm;
+                            padding-inline-start: 35px;
+                            &:focus{
+                                border: 1px solid $secondary-color;
+                            }
+                            &::-webkit-input-placeholder,&::-ms-input-placeholder, &::-moz-input-placeholder,&::placeholder{
+                                //font-family: 'icomoon';
+                                font-size: 12px;
+                                //height: 15px;
+                                font-family: inherit;
+                            }
+                        }
+                        div[class$="error"]{
+                            color: $secondary-color;
+                            margin-top: 8px;
+                        }
+                    }
+                  
+                }
+                .pm-full-width-container{
+                    padding: 0;
+                    input[type="submit"]{
+                        @extend .flex-center;
+                        background-color: $secondary-color;
+                        min-height: 40px;
+                        min-width: 110px;
+                        max-width: inherit;
+                        padding: 10px;
+                        color: $white;
+                        width: max-content;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        transition: all 0.2s ease-in;
+                        font-weight: 300;
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        box-shadow: none;
+                        &:hover{
+                            background-color: $secondary-dark;
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+    }
+}
+

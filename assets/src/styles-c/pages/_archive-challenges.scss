@@ -1,0 +1,128 @@
+.challenges{
+    .title-rrm{
+        margin-block-start: 30px;
+        @media only screen and (min-width: 767px){
+            margin-block-start: 60px;
+        }
+        
+    }
+    @media only screen and (max-width: 767px){
+        flex-direction: column;
+    }
+    @media only screen and (min-width: 768px){
+        gap: 30px;
+    }
+    &__content{
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-block-start: 30px;
+        margin-block-end: 100px;
+    }
+}
+
+.challenge{
+    max-height: 300px;
+    overflow: hidden;
+    @media only screen and (min-width: 768px){
+        flex-basis: calc(50% - 15px);
+        height: auto;
+    }
+    a{
+        display: grid;
+        grid-auto-rows: 300px;
+        @media only screen and (min-width: 768px) and (max-width: 991px){
+            grid-auto-rows: 220px;
+        }
+    }
+    img{
+        grid-area: 1 / -1;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+
+        transform: scale(1);
+        transition: -webkit-transform 300ms ease;   
+    }
+    &:hover{
+        >a{
+            >img{
+                transform: scale(1.1);
+            }
+        }
+    }
+    &__medal{
+        grid-area: 1 / -1;
+        justify-self: flex-end;
+        align-self: flex-start;
+        //padding: 25px;
+        margin: 25px;
+        display: inline-flex;
+        justify-content: flex-end;
+        max-width: 80px;
+        @media only screen and (min-width: 768px) and (max-width: 991px){
+            display: flex;
+            justify-content: flex-end;
+            //padding: 10px;
+            margin: 10px;
+        }
+        img{
+            // height: 25%;
+            // width: 25%;
+            // @media only screen and (min-width: 768px) and (max-width: 991px){
+            //     height: 15%;
+            //     width: 15%;
+            // }
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+       
+    }
+    &__content{
+        padding: 15px;
+        grid-area: 1 / -1;
+        align-self: flex-end;
+        position: relative;
+        z-index: 1;
+        @media only screen and (min-width: 576px){
+            padding: 22px;
+        }
+        @media only screen and (min-width: 768px){
+            padding: 25px;
+        }
+        span{
+            &.category{
+                font-size: 9px;
+                letter-spacing: 2.07px;
+                text-transform: uppercase;
+                color: $secondary-color;
+                text-shadow: 0 3px 6px #000;
+            }
+        }
+        h2{
+            color: $white;
+            font-size: 37px;
+            text-transform: uppercase;
+            text-shadow: 0 3px 6px #000;
+            margin-block-end: 8px;
+            line-height: 1;
+        }
+        button{
+            @extend .flex-center;
+            background-color: $secondary-color;
+            min-height: 40px;
+            min-width: 110px;
+            max-width: inherit;
+            padding: 10px;
+            color: $white;
+            width: max-content;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in;
+            &:hover{
+                background-color: $secondary-dark;
+            }
+        }
+    }
+}

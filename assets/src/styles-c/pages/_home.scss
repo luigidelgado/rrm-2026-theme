@@ -1,0 +1,128 @@
+#home_unete{
+    form.tnp-subscription{
+        display: flex;
+        margin: 5px 0;
+        .tnp-field-email{
+            max-width: 283px;
+            width: 100%;
+            position: relative;
+            input{
+                background-color: #f0f0f0;
+                padding: 13px 38px 12px 28px;
+                border: 0;
+                height: 40px;
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                top: 16px;
+                left: 12px;
+                background-image: url("../images/home/unete/email.png");
+                background-repeat: no-repeat;
+                width: 10px;
+                height: 8px;
+            }
+            //padding: 13px 38px 12px 28px;
+        }
+        .tnp-field-button{
+            input{
+                background-color: $secondary-color;
+                font-family: $teko;
+                font-size: 12px;
+                font-weight: 400;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: uppercase;
+                width: fit-content;
+                padding-inline: 40px;
+               
+            }
+        }
+    }
+}
+
+
+#home_top_desafios{
+    .bg_top_desafios{
+        .container{
+            .slider_desafios{
+                .slick-slide{
+                    div{
+                        height: 100%;
+                        >img{
+                            object-fit: cover;
+                            height: 100%;
+                            object-position: center;
+                        }
+                    }
+                }
+            }
+        }
+    } 
+} 
+
+#home_localiza_c{
+    margin: 90px 0;
+    width: 100%;
+    .content_localiza_c{
+        display: flex;
+        flex-direction: column;
+        column-gap: 10px;
+        row-gap: 20px;
+        @media screen and (min-width: 768px){
+            flex-direction: row;
+            padding-inline: 95px;
+        }
+        &_left{
+            flex: 1;
+            h2{
+                font-size: $teko;
+                font-size: 50px;
+                text-transform: uppercase;
+                margin-block-end: 45px;
+                font-weight: 400;
+                color: $white;
+            }
+            h3{
+                margin-inline: 35px;
+                font-family: $teko;
+                font-size: 12px;
+                letter-spacing: 2.76px;
+                text-transform: uppercase;
+                margin-block-end: 12px;
+                font-weight: 400;
+                color: $white;
+                position: relative;
+                display: inline-block;
+                &:after,&:before{
+                    content: "";
+                    background-color: $secondary-color;
+                    height: 2px;
+                    position: absolute;
+                    top: -3px;
+                    bottom: 0;
+                    width: 24px;
+                    margin: auto;
+                }
+                &:before{
+                    left: -35px;
+                }
+                &:after{
+                    right: -35px;
+                }
+            }
+            a{
+                @include primary-button(39px, fit-content, 12px, 12px);
+                padding: 11px 27px;
+            }
+        }
+        &_right{
+            flex-grow: 0;
+            @media screen and (min-width: 768px){
+                flex-basis: 380px;
+            }
+        }
+    }
+}

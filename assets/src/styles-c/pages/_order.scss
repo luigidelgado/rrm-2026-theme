@@ -1,0 +1,22 @@
+.woocommerce-order{
+    .woocommerce-notice{
+        margin-top: 40px;
+        font-size: 40px;
+        color: var(--white);
+    }
+    .woocommerce-order-details__title{
+        color: var(--white);
+    }
+    .woocommerce-customer-details{
+        color: white;
+        .addresses{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            color: white;
+        }
+        .woocommerce-column{
+            flex: 1 0 300px;
+        }
+    }
+}

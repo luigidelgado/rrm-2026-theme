@@ -1,0 +1,111 @@
+.not-found-container{
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    min-height: auto;
+    .rrm-breadcrumb{
+        position: absolute;
+        margin-top: 10px;
+        left: 0;
+        right: 0;
+        margin-inline: auto;
+        text-align: center;
+        @media only screen and (min-width: 768px){
+            margin-top: 105px;
+            margin-left: 180px;
+            text-align: start;
+            left: inherit;
+            right: inherit;
+        }
+        nav{
+            color: $primary-color;
+            a{
+                color: $secondary-color;
+            }
+        }
+    }
+    @media only screen and (min-width: 768px){
+        max-height: 100vh;
+    }
+    img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+    }
+    >div{
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+    }
+    .not-found{
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        &__main-content{
+            max-width: 700px;
+            margin-block-start: 50px;
+            margin-block-end: 30px;
+            padding-inline: 20px;
+            @media only screen and (min-width: 768px){
+                margin-block-start: 120px;
+            }
+            @media only screen and (min-width: 1200px){
+                margin-block-start: 150px;
+            }
+            h1{
+                font-size: 150px;
+                font-weight: 600;
+                line-height: 0.6;
+                @media only screen and (min-width: 768px){
+                    line-height: 1;
+                }
+            }
+            h2{
+                font-size: 38px;
+                line-height: 1;
+                text-transform: uppercase;
+                font-weight: 600;
+                @media only screen and (min-width: 768px){
+                    font-size: 75px;
+                }
+            }
+            p{
+                color: $white;
+                font-size: 18px;
+                margin-block-end: 40px;
+            }
+            a{
+                @extend .flex-center;
+                background-color: $secondary-color;
+                min-height: 40px;
+                min-width: 160px;
+                max-width: inherit;
+                padding: 10px;
+                color: $white;
+                width: max-content;
+                font-size: 12px;
+                text-transform: uppercase;
+                transition: all 0.2s ease-in;
+                font-weight: 300;
+                margin-inline: auto;
+                border: none;
+                outline: none;
+                box-shadow: none;
+                &:hover{
+                    background-color: $secondary-dark;
+                }
+            }
+        }
+    }
+}
+
+.error404,.page-id-185882{
+    #content{
+        & + footer{
+            padding-block-start: 100px;
+        }
+    }
+   
+}

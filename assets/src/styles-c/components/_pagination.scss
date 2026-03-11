@@ -1,0 +1,30 @@
+.pagination-rrm{
+    display: flex;
+    justify-content: center;
+    margin-block-end: 30px;
+    @media only screen and (min-width: 768px){
+        margin-block-end: 90px;
+    }
+    ul{
+        display: flex;
+        column-gap: 30px;
+        font-size: 15px;
+        font-family: $lato;
+        margin: 0;
+        padding: 0;
+        li{
+            a,span{
+                color: $white;
+    
+            }
+            .page-numbers{
+                &.current{
+                    color: $secondary-color;
+                }
+            }
+        }
+      
+
+        
+    }
+}

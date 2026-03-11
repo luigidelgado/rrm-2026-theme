@@ -1,0 +1,247 @@
+.history-intro{
+    display: grid;
+    margin-block-start: 25px;
+    gap: 30px;
+    @media only screen and (min-width: 768px){
+        margin-block-start: 70px;
+    }
+    @media only screen and (min-width: 992px){
+        grid-template-columns: repeat(12,1fr);
+    }
+    
+    &--left{
+        order: 2;
+        display: flex;
+        justify-content: center;
+        @media only screen and (min-width: 992px){
+            order: -1;
+            grid-column: 2/7;
+            justify-content: flex-start;
+        }
+    }
+    &--right{
+        @media only screen and (min-width: 992px){
+            grid-column: 7/12;
+        }
+    }
+    &__info{
+        h2{
+            font-size: 45px;
+            color: $white;
+            text-transform: uppercase;
+            @media only screen and (min-width: 768px){
+                margin-block-start: rem(50px);
+            }
+        }
+        p,span,div{
+            margin-block-end: 15px;
+        }
+    }
+    &__content{
+        font-size: 14px;
+        color: $gray2;
+        font-family: $lato;
+    }
+}
+
+.line-separator{
+    max-width: 810px;
+    margin-inline: auto;
+    background-color: $secondary-color;
+    height: 2px;
+    margin-block-end: 60px;
+    @media only screen and (min-width: 768px){
+        margin-block-end: 90px;
+    }
+}
+
+.history-rrm{
+   
+    &__content{
+        //display: flex;
+        max-width: 920px;
+        margin-inline: auto;
+        margin-block-start: 20px;
+        margin-block-end: 60px;
+        //flex-direction: column;
+        @media only screen and (min-width: 768px){
+            display: flex;
+            margin-block-start: 30px;
+            margin-block-end: 90px;
+        }
+    }
+    // &--left,&--right{
+    //     flex: 1;
+    // }
+    &--left{
+        flex-basis: 350px;
+        flex-shrink: 0;
+        flex-grow: 0;
+        height: 350px;
+        @media only screen and (min-width: 768px){
+            height: auto;
+        }
+        @media only screen and (min-width: 992px){
+            flex-basis: 516px;
+        }
+        img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &--right{
+        background-color: $white;
+        flex: 1 0 0;
+    }
+    .timeline-box{
+        display: flex;
+        column-gap: 15px;
+        padding-block: 25px;
+        @media only screen and (min-width: 768px){
+            padding-block: 55px;
+            column-gap: 35px;
+        }
+        .tabs{
+            flex-basis: 60px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            .tab{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                width: 100%;
+                cursor: pointer;
+                span{
+                    display: inline-block;
+                    height: 2px;
+                    background: $gray;
+                    //width: 13px;
+                    position: relative;
+                    top: -2px;
+                    margin-right: 10px;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    flex-basis: 13px;
+                    transition: all 0.2s ease-in;
+                }
+                >div{
+                    font-size: 12px;
+                    flex-basis: 20px;
+                    flex-shrink: 0;
+                }
+                &--active{
+                    span{
+                        flex-basis: 100%;
+                        background: $secondary-color;
+                    }
+                }
+            }
+        }
+        .tab-content{
+           display: none;
+           padding-inline-end: 15px;
+            @media only screen and (min-width: 768px){
+                padding-inline-end: 55px;
+            }
+            h2{
+                font-size: 24px;
+                color: $secondary-color;
+            }
+            h3{
+                font-size: 18px;
+                color: $primary-color;
+                border-top: none;
+                margin-block-start: 0;
+                padding-block-start: 0;
+            }
+            &__info{
+                color: $gray2;
+                font-size: 14px;
+                font-family: $lato;
+                p,span,div{
+                    margin-block-end: 15px;
+                }
+            }
+            &--active{
+                display: block;
+            }
+        }
+    }
+    .tab-content-image{
+        display: none;
+        height: 100%;
+        &--active{
+            display: block;
+        }
+    }
+}
+
+.history-experience{
+    &__content{
+        max-width: 810px;
+        margin-inline: auto;
+        display: flex;
+        justify-content: center;
+        color: $gray2;
+        font-size: 12px;
+        font-family: $lato;
+        //margin-block-start: 45px;
+        margin-block-end: 90px;
+        //column-gap: 60px;
+        flex-direction: column;
+        @media only screen and (min-width: 768px){
+            flex-direction: row;
+            margin-block-start: 45px;
+        }
+        p{
+            font-size: 14px;
+        }
+        ul{
+            padding: 0;
+            margin: 0;
+            margin-block: 25px;
+            li{
+                color: $white;
+                font-size: 19px;
+                text-transform: uppercase;
+                font-family: $teko;
+                position: relative;
+                padding-left: 30px;
+                margin-block: 12px;
+                &::before{
+                    //background-image: url('../images/history/add.svg');
+                    content: '';
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    left: 0;
+                    top: 7px;
+                    border-radius: 50%;
+                    background-color: $secondary-color;
+                }
+            }
+        }
+    }
+    &--left,&--right{
+        flex: 1;
+    }
+    &--left{
+        >div{
+            padding-inline-end: 65px;
+            p{
+                margin-block-end: 10px;
+            }
+        }
+    }
+}
+
+.history-intro{
+    &+ blockquote{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+}

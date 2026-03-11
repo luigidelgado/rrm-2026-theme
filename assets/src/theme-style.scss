@@ -1,0 +1,17 @@
+@use "normalize.css/normalize.css";
+
+@import
+  'abstracts/variables',
+  'abstracts/mixins';
+
+ @import
+  'base/fonts',
+  'base/typography';
+
+@import
+  'layout/header',
+  'layout/footer';
+
+@import
+  'pages/home',
+  'pages/goals';

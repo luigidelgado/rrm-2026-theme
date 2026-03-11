@@ -1,0 +1,283 @@
+.faq{
+    margin-block-start: 30px;
+    margin-block-end: 60px;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(2,auto);
+    @media only screen and (min-width: 768px){
+        margin-block-start: 50px;
+        margin-block-end: 90px;
+    }
+    h1{
+        font-size: 45px;
+        color: $white;
+        text-align: center;
+        text-transform: uppercase;
+        max-width: 600px;
+        margin-inline: auto;
+        margin-block-end: 20px;
+        grid-column: 1 / -1;
+        @media only screen and (min-width: 768px){
+            font-size: 50px;
+        }
+    }
+    &__more-faq{
+        grid-column-start: 1;
+        grid-column-end: -1;
+        grid-row-start: 2;
+        grid-row-end: -1;
+        @include primary-button(39px, fit-content, 12px, 12px);
+        margin-block-start: 60px;
+        margin-inline: auto;
+    }
+    &__boxes{
+        display: grid;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+        grid-column: 1 / -1;
+        @media only screen and (min-width: 768px){
+            display: flex;
+        }
+        @media only screen and (min-width: 992px){
+            grid-column: 2 / 12;
+        }
+    }
+    &-box{
+        background-color: $t-color;
+        padding-inline: 22px;
+        padding-block: 5px 15px;
+        flex-grow: 0;
+        flex-basis: calc(50% - 20px);
+        &.active{
+            .faq-box__content{
+                opacity: 1;
+                max-height: 500px;
+                transition: all 200ms linear;
+                will-change: opacity, max-height;
+                p{
+                    margin-block-end: 10px;
+                }
+            }
+            button{
+                color: $secondary-color;
+                span{
+                    &::before{
+                        height: 11px;
+                    }
+                }
+               
+            }
+        }
+    }
+    button{
+        background-color: transparent;
+        color: $white;
+        padding-inline: 0;
+        padding-block: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 30px;
+        width: 100%;
+        padding-inline-end: 30px;
+        font-size: 19px;
+        font-weight: 400;
+        text-align: start;
+        span{
+            position: relative;
+            &::after{
+                position: absolute;
+                top: 0;
+                left: -11px;
+                content: '';
+                width: 11px;
+                height: 1px;
+                background-color: $secondary-color;
+            }
+            &::before{
+                position: absolute;
+                top: 0;
+                top: -5px;
+                right: 5px;
+                content: '';
+                width: 1px;
+                height: 0px;
+                background-color: $secondary-color;
+            }
+        }
+        &:focus{
+            outline: none;
+        }
+    }
+    &-box__content{
+        color: $gray2;
+        font-size: 14px;
+        font-family: $lato;
+        overflow: auto;
+        padding-inline-end: 20px;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 200ms linear, max-height 200ms linear;
+        will-change: opacity, max-height;
+        
+    }
+}
+
+.rules{
+    margin-block-end: 90px;
+    .title-rrm{
+        max-width: 450px;
+    }
+    &__content{
+        &.desktop{
+            display: none;
+            @media only screen and (min-width: 768px){
+                display: block;
+            }
+        }
+    }
+    &__tabs{
+        display: flex;
+        column-gap: 6px;
+        justify-content: center;
+    }
+    .rule-tab{
+        @extend .flex-center;
+        min-height: 40px;
+        min-width: 85px;
+        max-width: max-content;
+        background-color: $black;
+        text-transform: uppercase;
+        color: $white;
+        font-size: 12px;
+        cursor: pointer;
+        padding-inline: 15px;
+        &--active{
+            background-color: $secondary-color;
+        }  
+    }
+    .rule-info{
+        max-width: 810px;
+        margin-block-start: 50px;
+        margin-inline: auto;
+        display: flex;
+        column-gap: 40px;
+        font-family: $lato;
+        color: $white;
+        font-size: 14px;
+        display: none;
+        >div{
+            flex: 1 0 0;
+            p,div{
+                margin-block-end: 10px;
+            }
+            ul{
+                margin: 0;
+                padding: 0;
+                li{
+                    position: relative;
+                    padding-left: 25px;
+                    margin-block: 12px;
+                    &::before{
+                        background-image: url('../images/faq/task-fill.svg');
+                        content: '';
+                        position: absolute;
+                        width: 9px;
+                        height: 9px;
+                        left: 0;
+                        top: 5px;
+                    }
+                }
+            }
+          
+        }
+        &--active{
+            display: flex;
+        }
+    }
+}
+
+.accordion {
+    margin-block-start: 20px;
+    @media only screen and (min-width: 768px){
+        display: none;
+    }
+    .accordion-item {
+        //border-bottom: 1px solid grey;
+        margin-block-end: 10px;
+        button[aria-expanded='true'] {
+            background-color: $secondary-color;
+        }
+    }
+    button {
+        position: relative;
+        display: block;
+        text-align: center;
+        width: 100%;
+        height: 40px;
+        padding: 1em 0;
+        color: $white;
+        font-size: 12px;
+        font-weight: 400;
+        border: none;
+        background: none;
+        outline: none;
+        background-color: $black;
+        text-transform: uppercase;
+        &:hover{
+        //background-color: $secondary-dark;
+        }
+        .accordion-title {
+            padding: 1em 1.5em 1em 0;
+        }
+    }
+    button[aria-expanded='true'] {
+        + .accordion-content {
+            opacity: 1;
+            max-height: 1000px;
+            transition: all 200ms linear;
+            will-change: opacity, max-height;
+            overflow: auto;
+        }
+    }
+    .accordion-content {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 200ms linear, max-height 200ms linear;
+        will-change: opacity, max-height;
+        >div{
+            &:first-child{
+                display: flex;
+                justify-content: center;
+                margin-block-start: 15px;
+                margin-block-end: 25px;
+            }
+        }
+        p,div {
+            color: $gray2;
+            font-size: 12px;
+            font-family: $lato;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            li{
+                position: relative;
+                padding-left: 25px;
+                margin-block: 12px;
+                &::before{
+                    background-image: url('../images/faq/task-fill.svg');
+                    content: '';
+                    position: absolute;
+                    width: 9px;
+                    height: 9px;
+                    left: 0;
+                    top: 5px;
+                }
+            }
+        }
+    }
+}

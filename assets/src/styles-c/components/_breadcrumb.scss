@@ -1,0 +1,35 @@
+.rrm-breadcrumb{
+    nav{
+        color: $white;
+        color: $text-color-p;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        a{
+            color: $text-color-p;
+            text-transform: uppercase;
+            &:first-of-type{
+                &::before{
+                    content: "";
+                }
+            }
+        }
+        span{
+            &.breadcrumb-separator{
+                padding-inline-start: 20px;
+                padding-inline-end: 16px;
+                &:after{
+                    content: "";
+                    border-bottom: 4px solid transparent;
+                    border-right: 4px solid transparent;
+                    border-left: 4px solid white;
+                    border-top: 4px solid transparent;
+                    font-family: "";
+                    position: static;
+                    width: auto;
+                    height: auto;
+                    transform: none;
+                }
+            }
+        }
+    }
+}

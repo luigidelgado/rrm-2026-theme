@@ -1,0 +1,62 @@
+.rrm-sorting{
+    display: grid;
+    grid-column: 1 / -1;
+    margin-block-start: 30px;
+    @media only screen and (min-width: 992px){
+        grid-column: 2 / 12;
+    }
+    .storefront-sorting{
+        display: flex;
+        column-gap: 20px;
+        align-items: center;
+        padding-block-end: 15px;
+        position: relative;
+        flex-wrap: wrap;
+        row-gap: 10px;
+        justify-content: center;
+        @media only screen and (min-width: 768px){
+            justify-content: space-between;
+        }
+        &::after,&::before{
+            content: none;
+            display: block;
+        }
+        &::after{
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255,255,255,0.4);
+            position: absolute;
+            bottom: 0;
+        }
+        select{
+            width: 195px;
+        }
+        .woocommerce-result-count{
+            order: -1;
+            font-size: 12px;
+            color: $white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .woocommerce-ordering{
+            margin-right: 0;
+            margin-block-end: 0px;
+            @media only screen and (min-width: 768px){
+                margin-block-end: 10px;
+            }
+        }
+        .custom-rss-select{
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            >p{
+                font-size: 12px;
+                letter-spacing: 3px;
+                color: $white;
+                text-transform: uppercase;
+            }
+        }
+    }
+    
+}

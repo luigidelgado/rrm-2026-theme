@@ -1,0 +1,53 @@
+.benefits{
+    max-width: 920px;
+    margin-inline: auto;
+    margin-block-end: 90px;
+    &__content{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        align-items: center;
+        img{
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &__info{
+        grid-column: 1 / 2;
+        grid-row: 1 / -1;
+        padding: 25px 45px;
+        color: $white;
+        h3{
+            font-size: 30px;
+            text-transform: uppercase;
+            font-weight: 400;
+            line-height: 1;
+            @media only screen and (min-width: 768px){
+                font-size: 50px;
+            }
+        }
+        p{
+            font-size: 12px;
+            font-family: $lato;
+            margin-bottom: 20px
+        }
+        a{
+            @extend .flex-center;
+            background-color: $secondary-color;
+            min-height: 40px;
+            min-width: 110px;
+            max-width: inherit;
+            padding: 10px;
+            color: $white;
+            width: max-content;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in;
+            &:hover{
+                background-color: $secondary-dark;
+            }
+        }
+    }
+}
