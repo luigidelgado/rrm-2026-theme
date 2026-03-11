@@ -17,7 +17,7 @@
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <script type="text/javascript">
-    let siteUrl = '<?= home_url(); ?>';
+    let siteUrl = '<?php echo esc_url( home_url() ); ?>';
     </script>
     <script>
     (g => {
@@ -190,38 +190,38 @@
             <div class="rr_subheader">
                 <div class="container d-flex">
                     <div class="rr_subheader_left_content">
-                        <p><?php echo $eslogan; ?></p>
+                        <p><?php echo esc_html( $eslogan ); ?></p>
                         <div class="rr_subheader_social">
-                            <p><?php echo $texto_redes_sociales; ?></p>
-                            <a href="<?php echo $urlFacebook; ?>" target="_blank"><img src="<?php echo $facebook;?>"
-                                    alt="<?php echo $urlFacebook; ?>"></a>
-                            <a href="<?php echo $urlInstagram; ?>" target="_blank"><img src="<?php echo $instagram;?>"
-                                    alt="<?php echo $urlInstagram; ?>"></a>
-                            <a href="<?php echo $urlTwitter; ?>" target="_blank"><img src="<?php echo $twitter;?>"
-                                    alt="<?php echo $urlTwitter; ?>"></a>
-                            <a href="<?php echo $urlYoutube; ?>" target="_blank"><img src="<?php echo $youtube;?>"
-                                    alt="<?php echo $urlYoutube; ?>"></a>
+                            <p><?php echo esc_html( $texto_redes_sociales ); ?></p>
+                            <a href="<?php echo esc_url( $urlFacebook ); ?>" target="_blank"><img src="<?php echo esc_url( $facebook ); ?>"
+                                    alt="<?php echo esc_attr( $urlFacebook ); ?>"></a>
+                            <a href="<?php echo esc_url( $urlInstagram ); ?>" target="_blank"><img src="<?php echo esc_url( $instagram ); ?>"
+                                    alt="<?php echo esc_attr( $urlInstagram ); ?>"></a>
+                            <a href="<?php echo esc_url( $urlTwitter ); ?>" target="_blank"><img src="<?php echo esc_url( $twitter ); ?>"
+                                    alt="<?php echo esc_attr( $urlTwitter ); ?>"></a>
+                            <a href="<?php echo esc_url( $urlYoutube ); ?>" target="_blank"><img src="<?php echo esc_url( $youtube ); ?>"
+                                    alt="<?php echo esc_attr( $urlYoutube ); ?>"></a>
                         </div>
                     </div>
                     <div class="rr_subheader_right_content">
-                        <a id="search_btn" href="#"><img src="<?php echo $search;?>" alt="search"></a>
+                        <a id="search_btn" href="#"><img src="<?php echo esc_url( $search ); ?>" alt="search"></a>
                         <a href="#" id="notification_btn">
-                            <?php 
-                                if( is_user_logged_in() ){ 
+                            <?php
+                                if( is_user_logged_in() ){
                                     $found = get_user_meta( $current_user->ID, 'notification', true);
                                     if($found == "true"){
                                         ?> <span></span><?php
                                     }
                                 }
                             ?>
-                            <img src="<?php echo $notification;?>" alt="notification"></a>
-                        <a href="<?php echo wc_get_cart_url(); ?>" class="cart_d"><img src="<?php echo $cart;?>"
+                            <img src="<?php echo esc_url( $notification ); ?>" alt="notification"></a>
+                        <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="cart_d"><img src="<?php echo esc_url( $cart ); ?>"
                                 alt="cart">
                             <div id="mini-cart-count"></div>
                         </a>
                         <a id="<?php if( is_user_logged_in() ){ ?>side_menu_btn<?php }else{ } ?>"
                             href="<?php if( is_user_logged_in() ){ ?>#<?php }else{ echo site_url( '/iniciar-sesion/', 'https' ); }?>"><img
-                                src="<?php echo $user;?>" alt="account"></a>
+                                src="<?php echo esc_url( $user ); ?>" alt="account"></a>
 
                         <div id="notifications_desk" class="notifications_desk">
                             <div class="notifications_content_mobile">
@@ -239,13 +239,13 @@
                                         $icon = icon_notification($tipo);
                                     ?>
                                     <div class="item_notification">
-                                        <i class="img_notification <?php echo $icon; ?>"></i>
+                                        <i class="img_notification <?php echo esc_attr( $icon ); ?>"></i>
                                         <div class="data_notification">
-                                            <p class="notification"><?php echo $alerta->post_title; ?></p>
+                                            <p class="notification"><?php echo esc_html( $alerta->post_title ); ?></p>
                                             <?php if($adicional  != ""){ ?><p class="notification">
-                                                <?php echo $adicional; ?></p> <?php }?>
+                                                <?php echo wp_kses_post( $adicional ); ?></p> <?php }?>
                                             <p class="date">
-                                                <?php echo $tiempo; ?>
+                                                <?php echo esc_html( $tiempo ); ?>
                                             </p>
                                         </div>
                                     </div>
@@ -273,15 +273,15 @@
                                         ?>
 
                                 <div class="img_user">
-                                    <?php echo $avatar_url ?>
+                                    <?php echo $avatar_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() retorna HTML seguro ?>
                                 </div>
                                 <div class="data_user">
                                     <div class="name_user">
-                                        <h3><?php echo $current_user->first_name . ' ' . $current_user->last_name; ?>
+                                        <h3><?php echo esc_html( $current_user->first_name . ' ' . $current_user->last_name ); ?>
                                         </h3><?php if($active_user){ ?><i class="icon-verified"></i> <?php } ?>
                                     </div>
                                     <div class="type_user">
-                                        <p><?php echo $u_level['level']; ?></p>
+                                        <p><?php echo esc_html( $u_level['level'] ); ?></p>
                                     </div>
                                 </div>
                                 <?php
@@ -318,12 +318,12 @@
                 </div>
             </div>
             <div id="rr_scroll_top" class="scroll_top">
-                <img src="<?php echo $up;?>" alt="scroll_top">
+                <img src="<?php echo esc_url( $up ); ?>" alt="scroll_top">
             </div>
 
             <div class="menu_top_mobile">
                 <div class="rr_logo_mobile">
-                    <a href="<?php echo home_url(); ?>">
+                    <a href="<?php echo esc_url( home_url() ); ?>">
                         <?php /* <img src="<?php echo $logoM;?>" alt="logoM"> */ ?>
                         <?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full' ); ?>
                     </a>
@@ -340,7 +340,7 @@
                 <div class="container d-flex">
                     <div class="rr_logo">
 
-                        <a href="<?php echo home_url(); ?>">
+                        <a href="<?php echo esc_url( home_url() ); ?>">
                             <?php /* <img src="<?php echo $logo; ?>" alt="logo"> */ ?>
                             <?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full' ); ?>
                         </a>
@@ -395,15 +395,15 @@
                     ?>
 
                     <div class="img_user">
-                        <?php echo $avatar_url; ?>
+                        <?php echo $avatar_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() retorna HTML seguro ?>
                     </div>
                     <div class="data_user">
                         <div class="name_user">
-                            <h3><?php echo $current_user->first_name . ' ' . $current_user->last_name; ?></h3>
+                            <h3><?php echo esc_html( $current_user->first_name . ' ' . $current_user->last_name ); ?></h3>
                             <?php if($active_user){ ?><i class="icon-verified"></i> <?php } ?>
                         </div>
                         <div class="type_user">
-                            <p><?php echo $u_level['level']; ?></p>
+                            <p><?php echo esc_html( $u_level['level'] ); ?></p>
                         </div>
                     </div>
                     <?php
@@ -440,29 +440,29 @@
             </div>
         </header><!-- #masthead -->
 
-        <div class="unete-modal" style="background-image:url(<?php echo $modal_img[0]; ?>);">
+        <div class="unete-modal" style="background-image:url(<?php echo esc_url( $modal_img[0] ); ?>);">
             <div class="unete-content-modal">
-                <a id="unete-close"><img src="<?php echo $close;?>" alt="close"></a>
-                <h2><?php echo $modal_titulo;?></h2>
+                <a id="unete-close"><img src="<?php echo esc_url( $close ); ?>" alt="close"></a>
+                <h2><?php echo esc_html( $modal_titulo ); ?></h2>
                 <div class="list_modal">
-                    <?php echo $contenido_modal;?>
+                    <?php echo wp_kses_post( $contenido_modal ); ?>
                 </div>
                 <a id="btn_unete_header" class="btn_unete" href="<?php echo esc_url( get_permalink(100) ); ?>">únete al
                     desafío</a>
             </div>
             <div class="unete-backdrop-modal"></div>
-            <input type="hidden" name="time_banner" id="time_banner" value="<?php echo $duracion_banner;?>">
+            <input type="hidden" name="time_banner" id="time_banner" value="<?php echo esc_attr( $duracion_banner ); ?>">
         </div>
 
         <div class="buscar-modal">
             <div class="buscar_content_modal">
                 <!--<div class="input_search">
-                    <a id="buscar-close"><img src="<?php echo $close;?>" alt="close"></a>
+                    <a id="buscar-close"><img src="<?php echo esc_url( $close ); ?>" alt="close"></a>
                     <input type="text" placeholder="Ingresa tu busqueda">
                 </div>-->
                 <form role="search" method="get" class="woocommerce-product-search input_search"
                     action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <a id="buscar-close"><img src="<?php echo $close;?>" alt="close"></a>
+                    <a id="buscar-close"><img src="<?php echo esc_url( $close ); ?>" alt="close"></a>
                     <input type="search"
                         id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>"
                         class="search-field"
@@ -543,13 +543,13 @@
                                 $icon = icon_notification($tipo);
                             ?>
                         <div class="item_notification">
-                            <i class="img_notification <?php echo $icon; ?>"></i>
+                            <i class="img_notification <?php echo esc_attr( $icon ); ?>"></i>
                             <div class="data_notification">
-                                <p class="notification"><?php echo $alerta->post_title; ?></p>
+                                <p class="notification"><?php echo esc_html( $alerta->post_title ); ?></p>
                                 <?php if($adicional  != ""){ ?><p class="notification">
-                                    <?php echo $adicional; ?></p> <?php }?>
+                                    <?php echo wp_kses_post( $adicional ); ?></p> <?php }?>
                                 <p class="date">
-                                    <?php echo $tiempo; ?>
+                                    <?php echo esc_html( $tiempo ); ?>
                                 </p>
                             </div>
                         </div>
