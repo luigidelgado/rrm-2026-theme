@@ -393,7 +393,7 @@ function updateBikeGarage(){
           type: "POST",
           url: pm_ajax_object.ajax_url,
           cache: false,
-          data: { action: "refresh_garage", "refresh-garage": "yes" },
+          data: { action: "refresh_garage", "refresh-garage": "yes", nonce: cc_ajax_object.nonces.refresh_garage },
         //   beforeSend: function () {
         //     jQuery(".loader").show();
         //   },
@@ -425,6 +425,7 @@ function deleteBikeGarage(){
             url: pm_ajax_object.ajax_url,
             data: {
                 action: 'delete_garage_item',
+                nonce: cc_ajax_object.nonces.delete_garage_item,
                 entry_id: entryID
             },
             beforeSend: function () {
@@ -553,6 +554,7 @@ function updateProfileAsync(selector){
         type: 'POST',
         data: {
             action: 'update_profile',
+            nonce: cc_ajax_object.nonces.update_profile,
             form_data: formData
         },
         beforeSend: function () {
@@ -640,6 +642,7 @@ function editBikeAsync(entry_id){
 
     let form_data = new FormData();
     form_data.append("action", "edit_garage_item");
+    form_data.append("nonce", cc_ajax_object.nonces.edit_garage_item);
     form_data.append("entry_id", entry_id);
     form_data.append("name", name);
     form_data.append("color", color);
@@ -845,6 +848,7 @@ function editChallengue(){
     let challengueImage = jQuery("#challengue-image").prop("files")[0];
     let form_data = new FormData();
     form_data.append("action", "edit_challengue");
+    form_data.append("nonce", cc_ajax_object.nonces.edit_challengue);
     form_data.append("entry_id", entryId);
     form_data.append("image", challengueImage);
 
@@ -921,6 +925,7 @@ function addChallengue(){
     // return;
     let form_data = new FormData();
     form_data.append("action", "save_challengue");
+    form_data.append("nonce", cc_ajax_object.nonces.save_challengue);
     form_data.append("challengueTitle", challengueTitle);
     form_data.append("challengueDescription", challengueDescription);
     form_data.append("challengueChallengue", challengueChallengue);
@@ -1041,6 +1046,7 @@ function getStatesZonesProfile(){
         url: pm_ajax_object.ajax_url,
         data: {
             action: 'filtered_options_upload_photo',
+            nonce: cc_ajax_object.nonces.filtered_options_upload_photo,
             challengue_id: challengueId
         },
         beforeSend: function () {
@@ -1301,7 +1307,7 @@ if( ! ajaxLock ) {
 
 
         //Parameters you want to pass to query
-        var ajaxData = '&post_offset=' + postOffset + '&action=ajaxNextPostsAproval';
+        var ajaxData = '&post_offset=' + postOffset + '&action=ajaxNextPostsAproval&nonce=' + cc_ajax_object.nonces.ajaxNextPostsAproval;
 
         //Ajax call itself
         jQuery.ajax({
@@ -1385,7 +1391,7 @@ if( ! ajaxLock2 ) {
 
 
         //Parameters you want to pass to query
-        var ajaxData = '&post_offset=' + postOffset + '&action=ajaxNextGalleryPosts';
+        var ajaxData = '&post_offset=' + postOffset + '&action=ajaxNextGalleryPosts&nonce=' + cc_ajax_object.nonces.ajaxNextGalleryPosts;
 
         //Ajax call itself
         jQuery.ajax({

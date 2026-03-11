@@ -123,7 +123,24 @@ function rr_register_scripts()
   wp_enqueue_script('recaptcha_g', '//google.com/recaptcha/api.js?onload=onloadCallback&render=explicit', array(), '1.0.12', true);
   wp_enqueue_script('main-scripts', get_template_directory_uri() .'/assets/dist/theme.js', array(), '1.2.0.4', true);
   wp_enqueue_script('secondary-scripts', get_template_directory_uri() .'/assets/dist/theme-c.js', array(), '1.0.7.13', true);
-  wp_localize_script('main-scripts', 'cc_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+  wp_localize_script( 'main-scripts', 'cc_ajax_object', array(
+    'ajax_url' => admin_url( 'admin-ajax.php' ),
+    'nonces'   => array(
+        'save_garage_item'                => wp_create_nonce( 'rrm_save_garage_item' ),
+        'refresh_garage'                  => wp_create_nonce( 'rrm_refresh_garage' ),
+        'get_contact_form'                => wp_create_nonce( 'rrm_get_contact_form' ),
+        'check_false_notifications'       => wp_create_nonce( 'rrm_check_false_notifications' ),
+        'delete_garage_item'              => wp_create_nonce( 'rrm_delete_garage_item' ),
+        'update_profile'                  => wp_create_nonce( 'rrm_update_profile' ),
+        'edit_garage_item'                => wp_create_nonce( 'rrm_edit_garage_item' ),
+        'edit_challengue'                 => wp_create_nonce( 'rrm_edit_challengue' ),
+        'save_challengue'                 => wp_create_nonce( 'rrm_save_challengue' ),
+        'ajaxNextGalleryPosts'            => wp_create_nonce( 'rrm_ajaxNextGalleryPosts' ),
+        'ajaxNextPostsAproval'            => wp_create_nonce( 'rrm_ajaxNextPostsAproval' ),
+        'delete_post_gallery'             => wp_create_nonce( 'rrm_delete_post_gallery' ),
+        'filtered_options_upload_photo'   => wp_create_nonce( 'rrm_filtered_options_upload_photo' ),
+    ),
+) );
 
 }
 
@@ -632,6 +649,7 @@ add_action('wp_ajax_save_garage_item', 'save_garage_item');
 add_action('wp_ajax_nopriv_save_garage_item', 'save_garage_item');
  
 function save_garage_item(){
+    check_ajax_referer( 'rrm_save_garage_item', 'nonce' );
     if ( empty( $_POST["name"] ) ) {
       //$response ="Ingresa un nombre";
       wp_send_json_error('Ingresa un nombre.');
@@ -728,6 +746,7 @@ add_action('wp_ajax_refresh_garage', 'refresh_garage');
 add_action( 'wp_ajax_nopriv_refresh_garage', 'refresh_garage' );
 
 function refresh_garage() {
+    check_ajax_referer( 'rrm_refresh_garage', 'nonce' );
     if( isset($_POST['refresh-garage']) && $_POST['refresh-garage'] == 'yes' ) {
         echo do_shortcode('[my_garage]'); 
     }
@@ -742,6 +761,7 @@ add_action('wp_ajax_get_contact_form', 'get_contact_form');
 add_action('wp_ajax_nopriv_get_contact_form', 'get_contact_form');
  
 function get_contact_form(){
+    check_ajax_referer( 'rrm_get_contact_form', 'nonce' );
     if ( empty( $_POST["name"] ) ) {
       $response ="Ingresa un nombre";
     }else if ( empty( $_POST["mail"] ) ) {
@@ -1066,6 +1086,7 @@ add_action('wp_ajax_check_false_notifications', 'check_false_notifications');
 add_action('wp_ajax_nopriv_check_false_notifications', 'check_false_notifications');
 
 function check_false_notifications($fecha_hora){
+    check_ajax_referer( 'rrm_check_false_notifications', 'nonce' );
   $current_user = wp_get_current_user();
   update_user_meta( $current_user->ID, 'notification', 'false' );
 }

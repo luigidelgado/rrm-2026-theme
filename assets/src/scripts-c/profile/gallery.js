@@ -91,6 +91,7 @@ function challengueGallery($, itemGallery){
             url: pm_ajax_object.ajax_url,
             data: {
                 action: 'delete_post_gallery',
+                nonce: cc_ajax_object.nonces.delete_post_gallery,
                 post_id: postId,
                 user_id_logged: u_data.id_user_logged
             },

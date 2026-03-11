@@ -1304,6 +1304,7 @@ add_action('wp_ajax_delete_garage_item', 'delete_garage_item');
 add_action('wp_ajax_nopriv_delete_garage_item', 'delete_garage_item');
 
 function delete_garage_item() {
+    check_ajax_referer( 'rrm_delete_garage_item', 'nonce' );
     // Obtener el ID de la entrada enviado por la solicitud AJAX
     $entry_id = isset($_POST['entry_id']) ? intval($_POST['entry_id']) : 0;
     //$entry_id = 0;
@@ -1345,6 +1346,7 @@ add_action('wp_ajax_update_profile', 'update_profile');
 add_action('wp_ajax_nopriv_update_profile', 'update_profile');
 
 function update_profile(){
+    check_ajax_referer( 'rrm_update_profile', 'nonce' );
     $user_id = get_current_user_id();
     parse_str($_POST['form_data'], $arr_data_profile);
 
@@ -1613,6 +1615,7 @@ add_action('wp_ajax_edit_garage_item', 'edit_garage_item');
 add_action('wp_ajax_nopriv_edit_garage_item', 'edit_garage_item');
 
 function edit_garage_item() {
+    check_ajax_referer( 'rrm_edit_garage_item', 'nonce' );
     $entryId = isset($_POST['entry_id']) ? intval($_POST['entry_id']) : 0;
     $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
     $color = isset($_POST['color']) ? intval($_POST['color']) : 0;
@@ -1702,6 +1705,7 @@ add_action('wp_ajax_edit_challengue', 'edit_challengue');
 add_action('wp_ajax_nopriv_edit_challengue', 'edit_challengue');
 
 function edit_challengue() {
+    check_ajax_referer( 'rrm_edit_challengue', 'nonce' );
     $post_id = isset($_POST['entry_id']) ? intval($_POST['entry_id']) : 0;
     
     //$user = wp_get_current_user();
@@ -1768,6 +1772,7 @@ add_action('wp_ajax_save_challengue', 'save_challengue');
 add_action('wp_ajax_nopriv_save_challengue', 'save_challengue');
 
 function save_challengue(){
+    check_ajax_referer( 'rrm_save_challengue', 'nonce' );
     global $wpdb;
     $tableGalerias = $wpdb->prefix.'galerias_migration';
     $challengueTitle = isset($_POST['challengueTitle']) ? sanitize_text_field($_POST['challengueTitle']) : '';
@@ -2168,6 +2173,7 @@ add_action('wp_ajax_ajaxNextGalleryPosts', 'ajaxNextGalleryPosts');
 add_action('wp_ajax_nopriv_ajaxNextGalleryPosts', 'ajaxNextGalleryPosts');
 
 function ajaxNextGalleryPosts(){
+    check_ajax_referer( 'rrm_ajaxNextGalleryPosts', 'nonce' );
     //Build query
    //if (is_user_logged_in()) {
         $userID = getUserId();
@@ -2270,6 +2276,7 @@ add_action('wp_ajax_ajaxNextPostsAproval', 'ajaxNextPostsAproval');
 add_action('wp_ajax_nopriv_ajaxNextPostsAproval', 'ajaxNextPostsAproval');
 
 function ajaxNextPostsAproval() {
+    check_ajax_referer( 'rrm_ajaxNextPostsAproval', 'nonce' );
 
     //Build query
     if (is_user_logged_in()) {
@@ -3739,6 +3746,7 @@ add_action('wp_ajax_delete_post_gallery', 'delete_post_gallery');
 add_action('wp_ajax_nopriv_delete_post_gallery', 'delete_post_gallery');
 
 function delete_post_gallery() {
+    check_ajax_referer( 'rrm_delete_post_gallery', 'nonce' );
     global $wpdb;
     $post_id = $_POST['post_id'];
     $user_id_logged = $_POST['user_id_logged'];
@@ -3776,6 +3784,7 @@ add_action('wp_ajax_filtered_options_upload_photo', 'filtered_options_upload_pho
 add_action('wp_ajax_nopriv_filtered_options_upload_photo', 'filtered_options_upload_photo');
 
 function filtered_options_upload_photo(){
+    check_ajax_referer( 'rrm_filtered_options_upload_photo', 'nonce' );
 
     $id_desafio = $_POST['challengue_id'];
     // Se necesita el id del desafio 

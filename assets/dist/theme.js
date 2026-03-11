@@ -516,6 +516,7 @@
         );
         let data = {
           action: "check_false_notifications",
+          nonce: cc_ajax_object.nonces.check_false_notifications,
         };
         jQuery
           .post(pm_ajax_object.ajax_url, data, function (response) {})
@@ -535,6 +536,7 @@
         jQuery(".notifications_desk").toggleClass("show_notifications");
         let data = {
           action: "check_false_notifications",
+          nonce: cc_ajax_object.nonces.check_false_notifications,
         };
         jQuery
           .post(pm_ajax_object.ajax_url, data, function (response) {})
@@ -682,6 +684,7 @@
             var image = jQuery("#bike-image").prop("files")[0];
             var form_data = new FormData();
             form_data.append("action", "save_garage_item");
+            form_data.append("nonce", cc_ajax_object.nonces.save_garage_item);
             form_data.append("name", name);
             form_data.append("color", color);
             form_data.append("model", model);
@@ -763,7 +766,7 @@
           type: "POST",
           url: pm_ajax_object.ajax_url,
           cache: false,
-          data: { action: "refresh_garage", "refresh-garage": "yes" },
+          data: { action: "refresh_garage", "refresh-garage": "yes", nonce: cc_ajax_object.nonces.refresh_garage },
           complete: function () {
             jQuery(".loader").hide();
             jQuery("#bike-name").val("");
@@ -801,6 +804,7 @@
       var image = jQuery("#bike-image").prop("files")[0];
       var form_data = new FormData();
       form_data.append("action", "save_garage_item");
+      form_data.append("nonce", cc_ajax_object.nonces.save_garage_item);
       form_data.append("name", name);
       form_data.append("color", color);
       form_data.append("model", model);
@@ -827,7 +831,7 @@
               type: "POST",
               url: pm_ajax_object.ajax_url,
               cache: false,
-              data: { action: "refresh_garage", "refresh-garage": "yes" },
+              data: { action: "refresh_garage", "refresh-garage": "yes", nonce: cc_ajax_object.nonces.refresh_garage },
               complete: function () {
                 jQuery(".loader").hide();
                 jQuery("#bike-name").val("");
@@ -871,6 +875,7 @@
         var msg = document.getElementById("message").value;
         let data = {
           action: "get_contact_form",
+          nonce: cc_ajax_object.nonces.get_contact_form,
           name: name,
           mail: mail,
           message: msg,
