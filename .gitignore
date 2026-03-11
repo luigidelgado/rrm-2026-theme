@@ -1,0 +1,12 @@
+# Logs - nunca commitear
+error_log
+php_error.log
+debug.log
+*.log
+
+# Dependencias de Node (assets build)
+assets/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db

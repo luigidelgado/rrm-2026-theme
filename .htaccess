@@ -1,0 +1,11 @@
+# Bloquear acceso directo al error_log y archivos de log
+<FilesMatch "^(error_log|php_error\.log|debug\.log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquear acceso a archivos de configuración y sensibles
+<FilesMatch "\.(json|lock|md|sh|bat|env|config)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

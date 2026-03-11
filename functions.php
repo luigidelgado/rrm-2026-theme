@@ -12,6 +12,18 @@ $theme              = wp_get_theme( 'storefront' );
 $storefront_version = $theme['Version'];
 
 /**
+ * Google Maps API Key.
+ * Define RRM_GOOGLE_MAPS_KEY en wp-config.php para sobrescribir.
+ * IMPORTANTE: Restringir la key en Google Cloud Console a dominios permitidos
+ * y solo a la API "Maps JavaScript API".
+ * Ejemplo en wp-config.php:
+ *   define( 'RRM_GOOGLE_MAPS_KEY', 'TU_API_KEY_AQUI' );
+ */
+if ( ! defined( 'RRM_GOOGLE_MAPS_KEY' ) ) {
+    define( 'RRM_GOOGLE_MAPS_KEY', get_option( 'rrm_google_maps_key', '' ) );
+}
+
+/**
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
@@ -360,11 +372,11 @@ function initCustoms()
 
 function saveCustomMeta($post_id)
   {
-	  if (isset($_POST['_text_url_slide_home']) && !empty($_POST['_text_url_slide_home'])) 
-      update_post_meta( $post_id, '_text_url_slide_home', $_POST['_text_url_slide_home'] );
+      if ( isset( $_POST['_text_url_slide_home'] ) && ! empty( $_POST['_text_url_slide_home'] ) )
+        update_post_meta( $post_id, '_text_url_slide_home', sanitize_text_field( wp_unslash( $_POST['_text_url_slide_home'] ) ) );
 
-    if (isset($_POST['_url_slide_home']) && !empty($_POST['_url_slide_home'])) 
-      update_post_meta( $post_id, '_url_slide_home', $_POST['_url_slide_home'] ); 
+    if ( isset( $_POST['_url_slide_home'] ) && ! empty( $_POST['_url_slide_home'] ) )
+        update_post_meta( $post_id, '_url_slide_home', esc_url_raw( wp_unslash( $_POST['_url_slide_home'] ) ) ); 
 
    // if (isset($_POST['_title_line']) && !empty($_POST['_title_line'])) 
     //  update_post_meta( $post_id, '_title_line', $_POST['_title_line'] ); 
@@ -655,13 +667,13 @@ function save_garage_item(){
       wp_send_json_error('Ingresa un nombre.');
     }else {
       $user = wp_get_current_user();
-      $name = $_POST["name"]; 
-      $marca = $_POST["brand"]; 
-      $color = $_POST["color"]; 
-      $modelo = $_POST["model"]; 
-      $estatus = $_POST["status"]; 
-      $estilo = $_POST["style"]; 
-      $image = $_POST["image"]; 
+      $name   = sanitize_text_field( wp_unslash( $_POST['name'] ) );
+      $marca  = absint( $_POST['brand'] );
+      $color  = absint( $_POST['color'] );
+      $modelo = sanitize_text_field( wp_unslash( $_POST['model'] ) );
+      $estatus = absint( $_POST['status'] );
+      $estilo  = absint( $_POST['style'] );
+      $image   = isset( $_POST['image'] ) ? sanitize_text_field( wp_unslash( $_POST['image'] ) ) : '';
       $args = array(
         'post_type' => 'garage',
         'post_title' => $name,
@@ -769,15 +781,19 @@ function get_contact_form(){
     }else if ( empty( $_POST["message"] ) ) {
       $response =  "Ingresa un mensaje";
     }else {
-      $headers .= 'Content-Type: text/html; charset=UTF-8' . "\r\n"; 
-      $headers .= 'From: '.$_POST["mail"] . "\r\n";
-      $to = 'mo_ska_182343@hotmail.com';
+      $contact_name    = sanitize_text_field( wp_unslash( $_POST['name'] ) );
+      $contact_email   = sanitize_email( wp_unslash( $_POST['mail'] ) );
+      $contact_message = sanitize_textarea_field( wp_unslash( $_POST['message'] ) );
+      $headers  = '';
+      $headers .= 'Content-Type: text/html; charset=UTF-8' . "\r\n";
+      $headers .= 'From: ' . $contact_email . "\r\n";
+      $to      = 'mo_ska_182343@hotmail.com';
       $subject = 'Mensaje de Contacto';
-      $body  = 'From: ' . $_POST['name'] . '\n';
-      $body .= 'Email: ' . $_POST['mail'] . '\n';
-      $body .= 'Message: ' . $_POST['message'] . '\n';
-      $response =  wp_mail( $to, $subject, $body, $headers );
-      $response = mail("josel@g4all.mx","Contacto",$_POST['message']);
+      $body  = 'From: ' . $contact_name . "\n";
+      $body .= 'Email: ' . $contact_email . "\n";
+      $body .= 'Message: ' . $contact_message . "\n";
+      $response = wp_mail( $to, $subject, $body, $headers );
+      $response = mail( 'josel@g4all.mx', 'Contacto', $contact_message );
     }
     print_r(json_encode($response));
     exit;

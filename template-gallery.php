@@ -56,28 +56,29 @@
     // }
    
 
-    if (isset($_GET['orderby']) && $_GET['orderby'] !== '' ) {
-        $paramOrder = $_GET['orderby'];
+    // Whitelist para orderby
+    $allowed_orderby = array( 'ASC', 'DESC' );
+    if ( isset( $_GET['orderby'] ) && in_array( $_GET['orderby'], $allowed_orderby, true ) ) {
+        $paramOrder = sanitize_text_field( wp_unslash( $_GET['orderby'] ) );
         $args['orderby']['date'] = $paramOrder;
     }
 
-    if (isset($_GET['challengue-challengue']) && $_GET['challengue-challengue'] !== '' ) {
-        $paramSearch = $_GET['challengue-challengue'];
-        $args['meta_query'][0]['key'] = 'reto';
-        $args['meta_query'][0]['value']    = $paramSearch;
+    if ( isset( $_GET['challengue-challengue'] ) && $_GET['challengue-challengue'] !== '' ) {
+        $paramSearch = absint( $_GET['challengue-challengue'] );
+        $args['meta_query'][0]['key']   = 'reto';
+        $args['meta_query'][0]['value'] = $paramSearch;
     }
 
-    if (isset($_GET['challengue-state']) && $_GET['challengue-state'] !== '' ) {
-        $paramSearch2 = $_GET['challengue-state'];
-        //$args['tax_query']['relation'] = 'AND';
+    if ( isset( $_GET['challengue-state'] ) && $_GET['challengue-state'] !== '' ) {
+        $paramSearch2 = absint( $_GET['challengue-state'] );
         $args['tax_query'][0]['taxonomy'] = 'destinos';
         $args['tax_query'][0]['field']    = 'term_id';
         $args['tax_query'][0]['terms']    = $paramSearch2;
     }
 
-    if (isset($_GET['challengue-activity']) && $_GET['challengue-activity'] !== ''  ) {
-        $paramSearch3 = $_GET['challengue-activity'];
-        $args['tax_query']['relation'] = 'AND';
+    if ( isset( $_GET['challengue-activity'] ) && $_GET['challengue-activity'] !== '' ) {
+        $paramSearch3 = absint( $_GET['challengue-activity'] );
+        $args['tax_query']['relation']    = 'AND';
         $args['tax_query'][1]['taxonomy'] = 'destinos';
         $args['tax_query'][1]['field']    = 'term_id';
         $args['tax_query'][1]['terms']    = $paramSearch3;
@@ -157,17 +158,23 @@
                             <option value="">Selecciona el estado o zona</option>
                             <!-- Inserta las opciones profile.js getStatesZones() -->
                             <?php if (isset($_GET['challengue-state']) && $_GET['challengue-state'] !== '' ): ?>
-                            <?php echo '<option value="" selected="selected">' . get_term_by('term_taxonomy_id',$_GET['challengue-state'],'destinos')->name . '</option>'; ?>
+                            <?php
+                                $term_state = get_term_by( 'term_taxonomy_id', absint( $_GET['challengue-state'] ), 'destinos' );
+                                echo '<option value="" selected="selected">' . ( $term_state ? esc_html( $term_state->name ) : '' ) . '</option>';
+                            ?>
                             <?php endif; ?>
                             </select>
                         </div>
 
                         <div class="custom-rss-select">
-                            <?php echo '<select name="challengue-activity" id="challengue-activity"', (isset($_GET['challengue-challengue']) && $_GET['challengue-challengue'] !== '' ) ? 'disabled':'' ,'>'; ?>
+                            <?php echo '<select name="challengue-activity" id="challengue-activity"', (isset($_GET['challengue-challengue']) && $_GET['challengue-challengue'] !== '' ) ? ' disabled':'' ,'>'; ?>
                             <!-- <select name="challengue-activity" id="challengue-activity"> -->
                             <option value="">Selecciona el destino turistico o actividad</option>
                             <?php if (isset($_GET['challengue-activity']) && $_GET['challengue-activity'] !== '' ): ?>
-                            <?php echo '<option value="" selected="selected">' . get_term_by('term_taxonomy_id',$_GET['challengue-activity'],'destinos')->name . '</option>'; ?>
+                            <?php
+                                $term_activity = get_term_by( 'term_taxonomy_id', absint( $_GET['challengue-activity'] ), 'destinos' );
+                                echo '<option value="" selected="selected">' . ( $term_activity ? esc_html( $term_activity->name ) : '' ) . '</option>';
+                            ?>
                             <?php endif; ?>
                             </select>
                         </div>
@@ -191,15 +198,16 @@
 
                         <select name="orderby" class="orderby" aria-label="Shop order">
                             <?php echo '<option value=""', (isset($_GET['challengue-challengue']) && $_GET['challengue-challengue'] !== '' ) ? '':'selected' ,'> Seleccionar una opción: </option>'; ?>
-                            <?php echo '<option value="DESC"', ($_GET['orderby'] == "DESC" ) ? 'selected':'' ,'> Más recientes </option>'; ?>
-                            <?php echo '<option value="ASC"', ($_GET['orderby'] == "ASC" ) ? 'selected':'' ,'> Más antiguos </option>'; ?>
+                            <?php $current_orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : ''; ?>
+                            <?php echo '<option value="DESC"', ( $current_orderby === 'DESC' ) ? ' selected':'' ,'> Más recientes </option>'; ?>
+                            <?php echo '<option value="ASC"', ( $current_orderby === 'ASC' ) ? ' selected':'' ,'> Más antiguos </option>'; ?>
                         </select>
                     </div>
                     <input type="hidden" name="paged" value="1">
                     <input type="hidden" name="challengue-challengue"
-                        value="<?php echo $_GET["challengue-challengue"]; ?>">
-                    <input type="hidden" name="challengue-state" value="<?php echo $_GET["challengue-state"]; ?>">
-                    <input type="hidden" name="challengue-activity" value="<?php echo $_GET["challengue-activity"]; ?>">
+                        value="<?php echo absint( isset( $_GET['challengue-challengue'] ) ? $_GET['challengue-challengue'] : 0 ); ?>">
+                    <input type="hidden" name="challengue-state" value="<?php echo absint( isset( $_GET['challengue-state'] ) ? $_GET['challengue-state'] : 0 ); ?>">
+                    <input type="hidden" name="challengue-activity" value="<?php echo absint( isset( $_GET['challengue-activity'] ) ? $_GET['challengue-activity'] : 0 ); ?>">
                 </form>
                 <p class="woocommerce-result-count">
                     <?php

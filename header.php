@@ -45,8 +45,9 @@
         d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() =>
             d[l](f, ...n))
     })({
-        //key: "AIzaSyBjQfylrEN0CBOQyR3xmoTeG84Glk6bMis",
-        key: "AIzaSyDZHZwywpEp7gJ1xM3f8iCl-Tuurh-8Q5E",
+        key: "<?php echo esc_js( RRM_GOOGLE_MAPS_KEY ); ?>",
+        // API Key configurada via constante RRM_GOOGLE_MAPS_KEY en wp-config.php
+        // o mediante la opción 'rrm_google_maps_key' en la BD.
         // Add other bootstrap parameters as needed, using camel case.
         // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
     });
