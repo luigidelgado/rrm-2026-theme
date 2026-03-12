@@ -869,6 +869,12 @@ function rrm_is_active_user( $user_id ) {
 }
 
 function rrm_desafios_usuario( $user_id ) {
+	$transient_key   = 'rrm_desafios_' . (int) $user_id;
+	$cached          = get_transient( $transient_key );
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
 	global $wpdb;
 	$countParent     = 0;
 	$countTotalChild = 0;
@@ -877,18 +883,34 @@ function rrm_desafios_usuario( $user_id ) {
 		$countTotalChild += rrm_galerias_usuario( $user_id, $desafio->id_reto );
 	}
 	$countParent = count( $result );
-	return json_encode( array( $countParent, $countTotalChild ) );
+	$json        = json_encode( array( $countParent, $countTotalChild ) );
+
+	set_transient( $transient_key, $json, 12 * HOUR_IN_SECONDS );
+	return $json;
 }
 
 function rrm_galerias_usuario( $user_id, $id_reto ) {
+	$transient_key = 'rrm_galerias_' . (int) $user_id . '_' . (int) $id_reto;
+	$cached        = get_transient( $transient_key );
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
 	global $wpdb;
-	$galerias_reto = 0;
 	$result        = $wpdb->get_results( $wpdb->prepare( 'SELECT id_new FROM wphr_galerias_migration WHERE id_user = %d AND id_reto = %d', $user_id, $id_reto ) );
 	$galerias_reto = count( $result );
+
+	set_transient( $transient_key, $galerias_reto, 12 * HOUR_IN_SECONDS );
 	return $galerias_reto;
 }
 
 function rrm_user_level( $user_id ) {
+	$transient_key = 'rrm_level_' . (int) $user_id;
+	$cached        = get_transient( $transient_key );
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
 	global $wpdb;
 	$desafios = 0;
 	$galerias = 0;
@@ -906,8 +928,10 @@ function rrm_user_level( $user_id ) {
 	if ( $desa ) {
 		$desafios = count( $desa );
 	}
-	// return rrm_tipo_rodador($galerias,$desafios);
-	return rrm_tipo_rodador( $desafios, $galerias, $pueblos );
+
+	$level = rrm_tipo_rodador( $desafios, $galerias, $pueblos );
+	set_transient( $transient_key, $level, 12 * HOUR_IN_SECONDS );
+	return $level;
 }
 
 function rrm_tipo_rodador( $desafios, $galerias, $pueblos ) {
@@ -922,13 +946,19 @@ function rrm_tipo_rodador( $desafios, $galerias, $pueblos ) {
 		'badge' => 0,
 	);
 
-	$argsG    = array(
-		'numberposts' => -1,
-		'post_type'   => 'medalla',
-		'meta_key'    => 'tipo',
-		'meta_value'  => 'galeria',
-	);
-	$medallaG = get_posts( $argsG );
+	// Medal data changes rarely — cache globally, invalidate on save_post_medalla.
+	$medallaG = get_transient( 'rrm_medallas_galeria' );
+	if ( false === $medallaG ) {
+		$medallaG = get_posts(
+			array(
+				'numberposts' => -1,
+				'post_type'   => 'medalla',
+				'meta_key'    => 'tipo',
+				'meta_value'  => 'galeria',
+			)
+		);
+		set_transient( 'rrm_medallas_galeria', $medallaG, 24 * HOUR_IN_SECONDS );
+	}
 	if ( $medallaG ) {
 		foreach ( $medallaG as $mg ) {
 			$rango_i = get_post_meta( $mg->ID, 'rango_inferior', true );
@@ -941,13 +971,18 @@ function rrm_tipo_rodador( $desafios, $galerias, $pueblos ) {
 		}
 	}
 
-	$argsD    = array(
-		'numberposts' => -1,
-		'post_type'   => 'medalla',
-		'meta_key'    => 'tipo',
-		'meta_value'  => 'destino',
-	);
-	$medallaD = get_posts( $argsD );
+	$medallaD = get_transient( 'rrm_medallas_destino' );
+	if ( false === $medallaD ) {
+		$medallaD = get_posts(
+			array(
+				'numberposts' => -1,
+				'post_type'   => 'medalla',
+				'meta_key'    => 'tipo',
+				'meta_value'  => 'destino',
+			)
+		);
+		set_transient( 'rrm_medallas_destino', $medallaD, 24 * HOUR_IN_SECONDS );
+	}
 	if ( $medallaD ) {
 		foreach ( $medallaD as $md ) {
 			$rango_id = get_post_meta( $md->ID, 'rango_inferior', true );
@@ -960,13 +995,18 @@ function rrm_tipo_rodador( $desafios, $galerias, $pueblos ) {
 		}
 	}
 
-	$argsP    = array(
-		'numberposts' => -1,
-		'post_type'   => 'medalla',
-		'meta_key'    => 'tipo',
-		'meta_value'  => 'pueblo',
-	);
-	$medallaP = get_posts( $argsP );
+	$medallaP = get_transient( 'rrm_medallas_pueblo' );
+	if ( false === $medallaP ) {
+		$medallaP = get_posts(
+			array(
+				'numberposts' => -1,
+				'post_type'   => 'medalla',
+				'meta_key'    => 'tipo',
+				'meta_value'  => 'pueblo',
+			)
+		);
+		set_transient( 'rrm_medallas_pueblo', $medallaP, 24 * HOUR_IN_SECONDS );
+	}
 	if ( $medallaP ) {
 		foreach ( $medallaP as $mp ) {
 			$rango_ip = get_post_meta( $mp->ID, 'rango_inferior', true );
@@ -1289,3 +1329,68 @@ function change_product_for_membership_vip_renewal( $url, $membership ) {
 }
 
 // https://rodandorutasmagicas.com/mi-cuenta/subscriptions/
+
+// ============================================================
+// Transient cache invalidation
+// ============================================================
+
+/**
+ * Flush user-specific transients when a 'galerias' post is saved or trashed.
+ *
+ * @param int $post_id Post ID.
+ */
+function rrm_flush_gallery_transients( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+		return;
+	}
+	$rodador = get_post_meta( $post_id, 'rodador', true );
+	if ( ! $rodador ) {
+		return;
+	}
+	$user_id = (int) $rodador;
+	delete_transient( 'rrm_desafios_' . $user_id );
+	delete_transient( 'rrm_level_' . $user_id );
+	delete_transient( 'rrm_magic_towns_' . $user_id );
+	delete_transient( 'rrm_gallery_grouped_' . $user_id );
+
+	// Also clear per-challenge gallery counts for this user.
+	global $wpdb;
+	$retos = $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT id_reto FROM wphr_galerias_migration WHERE id_user = %d', $user_id ) );
+	foreach ( $retos as $id_reto ) {
+		delete_transient( 'rrm_galerias_' . $user_id . '_' . (int) $id_reto );
+	}
+}
+add_action( 'save_post_galerias', 'rrm_flush_gallery_transients' );
+add_action( 'before_delete_post', 'rrm_flush_gallery_transients' );
+add_action( 'wp_trash_post', 'rrm_flush_gallery_transients' );
+
+/**
+ * Flush global medal transients when a 'medalla' post is saved.
+ */
+function rrm_flush_medal_transients() {
+	delete_transient( 'rrm_medallas_galeria' );
+	delete_transient( 'rrm_medallas_destino' );
+	delete_transient( 'rrm_medallas_pueblo' );
+}
+add_action( 'save_post_medalla', 'rrm_flush_medal_transients' );
+add_action( 'before_delete_post', function( $post_id ) {
+	if ( 'medalla' === get_post_type( $post_id ) ) {
+		rrm_flush_medal_transients();
+	}
+} );
+
+/**
+ * Flush challengue list transients when a 'desafios' post is saved or deleted.
+ */
+function rrm_flush_challengue_transients() {
+	delete_transient( 'rrm_all_challengues' );
+	// Per-user rrm_challengues_* expire on their own TTL;
+	// bump a global generation key so stale keys are ignored immediately.
+	update_option( 'rrm_challengues_gen', time(), false );
+}
+add_action( 'save_post_desafios', 'rrm_flush_challengue_transients' );
+add_action( 'before_delete_post', function( $post_id ) {
+	if ( 'desafios' === get_post_type( $post_id ) ) {
+		rrm_flush_challengue_transients();
+	}
+} );
