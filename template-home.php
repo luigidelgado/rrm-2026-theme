@@ -36,7 +36,7 @@ get_header();
 	display: block;
 	height: 24px;
 	width: 14px;
-	background: url(<?php echo $next; ?>) no-repeat;
+	background: url(<?php echo esc_url( $next ); ?>) no-repeat;
 }
 
 #slider-top .slick-prev,
@@ -44,7 +44,7 @@ get_header();
 	display: block;
 	height: 24px;
 	width: 14px;
-	background: url(<?php echo $back; ?>) no-repeat;
+	background: url(<?php echo esc_url( $back ); ?>) no-repeat;
 }
 </style>
 
@@ -173,11 +173,11 @@ get_header();
 				$imgSlide  = get_the_post_thumbnail_url( $slideH->ID, 'full' );
 				?>
 		<div class="slide"
-			style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?php echo $imgSlide; ?>);">
+			style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?php echo esc_url( $imgSlide ); ?>);">
 			<div class="container caption-slide">
-				<div class="subtitle"><?php echo $slideH->post_content; ?></div>
-				<h2><?php echo $slideH->post_title; ?></h2>
-				<a href="<?php echo $urlSlide; ?>"><?php echo $textSlide; ?></a>
+				<div class="subtitle"><?php echo wp_kses_post( $slideH->post_content ); ?></div>
+				<h2><?php echo esc_html( $slideH->post_title ); ?></h2>
+				<a href="<?php echo esc_url( $urlSlide ); ?>"><?php echo esc_html( $textSlide ); ?></a>
 			</div>
 		</div>
 				<?php
