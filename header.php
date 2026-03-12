@@ -390,7 +390,7 @@
 					<div class="rr_logo">
 
 						<a href="<?php echo esc_url( home_url() ); ?>">
-							<?php /* <img src="<?php echo $logo; ?>" alt="logo"> */ ?>
+							<?php /* <img src="<?php echo esc_url( $logo ); ?>" alt="logo"> */ ?>
 							<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full' ); ?>
 						</a>
 					</div>

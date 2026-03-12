@@ -102,11 +102,11 @@ get_header();
 					<?php /*<p><?php echo $h_descripcion ?></p> */ ?>
 					<?php echo wpautop( $h_descripcion ); ?>
 					<?php // var_dump($h_link); ?>
-					<a href="<?php echo $h_link; ?>"><?php echo $h_tboton; ?></a>
-					<img src="<?php echo $h_img_izq[0]; ?>" alt="mision">
+					<a href="<?php echo esc_url( $h_link ); ?>"><?php echo $h_tboton; ?></a>
+					<img src="<?php echo esc_url( $h_img_izq[0] ); ?>" alt="mision">
 				</div>
 				<div class="right_content">
-					<img src="<?php echo $h_img_der[0]; ?>" alt="mision">
+					<img src="<?php echo esc_url( $h_img_der[0] ); ?>" alt="mision">
 					<h3><?php echo $h_slogan; ?></h3>
 				</div>
 			</div>
@@ -122,17 +122,17 @@ get_header();
 				</div>
 				<div class="down_content">
 					<div class="card_mision">
-						<img src="<?php echo $mision; ?>" alt="mision">
+						<img src="<?php echo esc_url( $mision ); ?>" alt="mision">
 						<h3><?php echo $mision_tizq; ?></h3>
 						<p><?php echo $mision_dizq; ?></p>
 					</div>
 					<div class="card_mision center_card">
-						<img src="<?php echo $vision; ?>" alt="vision">
+						<img src="<?php echo esc_url( $vision ); ?>" alt="vision">
 						<h3><?php echo $mision_tc; ?></h3>
 						<p><?php echo $mision_dc; ?></p>
 					</div>
 					<div class="card_mision">
-						<img src="<?php echo $valores; ?>" alt="valores">
+						<img src="<?php echo esc_url( $valores ); ?>" alt="valores">
 						<h3><?php echo $mision_tder; ?></h3>
 						<p><?php echo $mision_dder; ?></p>
 					</div>
@@ -144,11 +144,11 @@ get_header();
 	<section id="goals_banner_1">
 		<div class="container ">
 			<div class="content_banner">
-				<div class="bg_banner" style="background-image:url(<?php echo $bene_img[0]; ?>);">
+				<div class="bg_banner" style="background-image:url(<?php echo esc_url( $bene_img[0] ); ?>);">
 					<div class="left_content">
 						<h2><?php echo $bene_titulo; ?></h2>
 						<p><?php echo $bene_subtitulo; ?></p>
-						<a href="<?php echo $bene_link; ?>"><?php echo $bene_tboton; ?></a>
+						<a href="<?php echo esc_url( $bene_link ); ?>"><?php echo $bene_tboton; ?></a>
 					</div>
 				</div>
 

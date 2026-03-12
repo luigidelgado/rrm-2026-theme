@@ -1,7 +1,7 @@
 <article>
-	<a href="<?php echo $args['post-url']; ?>">
+	<a href="<?php echo esc_url( $args['post-url'] ); ?>">
 		<div class="recent-posts__image">
-			<img src="<?php echo $args['image-url']; ?>" alt="">
+			<img src="<?php echo esc_url( $args['image-url'] ); ?>" alt="">
 		</div>
 		<div class="recent-posts__info">
 			<h3>

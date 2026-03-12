@@ -1,4 +1,4 @@
-<a href="<?php echo $args['post-url']; ?>" class="profile-entry-active">
+<a href="<?php echo esc_url( $args['post-url'] ); ?>" class="profile-entry-active">
 	<div class="profile-entry-active--top">
 		<div class="profile-entry-active__image">
 			<?php echo $args['profile-image-url']; ?>

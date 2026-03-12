@@ -66,7 +66,7 @@ if ( have_posts() ) :
 							<?php echo $intro_desc; ?>
 						</p>*/
 						?>
-						<a href="<?php echo $intro_url_boton; ?>">
+						<a href="<?php echo esc_url( $intro_url_boton ); ?>">
 							<?php echo $intro_texto_boton; ?>
 						</a>
 						<?php
@@ -79,7 +79,7 @@ if ( have_posts() ) :
 					</div>
 				</div>
 				<div class="patch__image">
-					<img src="<?php echo $intro_bg[0]; ?>" alt="">
+					<img src="<?php echo esc_url( $intro_bg[0] ); ?>" alt="">
 				</div>
 			</div>
 
@@ -97,7 +97,7 @@ if ( have_posts() ) :
 					</div>
 				</div>
 				<div class="patch__image">
-					<img src="<?php echo $imgPatch; ?>" alt="">
+					<img src="<?php echo esc_url( $imgPatch ); ?>" alt="">
 				</div>
 			</div>
 					<?php

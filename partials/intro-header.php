@@ -1,6 +1,6 @@
 <div class="intro-header<?php echo ( isset( $args['is-transparent'] ) && $args['is-transparent'] ) ? ' degraded' : ''; ?>">
 	<div class="intro-header__image">
-		<img src="<?php echo $args['url']; ?>" alt="">
+		<img src="<?php echo esc_url( $args['url'] ); ?>" alt="">
 	</div>
 	<div class="intro-header__title">
 		<h1>

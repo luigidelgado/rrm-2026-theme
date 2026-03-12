@@ -1,4 +1,4 @@
-<a class="gallery-item" data-src="<?php echo $args['url-image']; ?>" 
+<a class="gallery-item" data-src="<?php echo esc_url( $args['url-image'] ); ?>" 
 	data-sub-html="<?php echo $args['title-image']; ?>
 	<?php
 	if ( $args['description-image'] ) :
@@ -20,7 +20,7 @@ endif;
 	
 	<div class="gallery-item__display">
 		<figure>
-			<img src="<?php echo $args['url-image']; ?>" data-exthumbimage="<?php echo $args['url-image']; ?>" alt="">
+			<img src="<?php echo esc_url( $args['url-image'] ); ?>" data-exthumbimage="<?php echo esc_url( $args['url-image'] ); ?>" alt="">
 		</figure>
 		<div class="gallery-item__biker">
 			<?php echo $args['biker-image']; ?>
@@ -52,10 +52,10 @@ endif;
 			<?php if($key === 0): ?>
 			<img
 				class="img-responsive"
-				src="<?php echo $value['url-image']; ?>"
+				src="<?php echo esc_url( $value['url-image'] ); ?>"
 				data-sub-html="<?php echo $value['content-description']; ?>"
-				data-exthumbimage="<?php echo $value['url-image']; ?>"
-				data-src="<?php echo $value['url-image']; ?>"
+				data-exthumbimage="<?php echo esc_url( $value['url-image'] ); ?>"
+				data-src="<?php echo esc_url( $value['url-image'] ); ?>"
 				data-slide-name="patzcuaro 12"
 				alt=""
 			>
@@ -63,8 +63,8 @@ endif;
 			<!-- Colocar  la imagenes correspondientes a la galería de la imagen princiapl (Thumbnails del modal)-->
 			<div
 				data-sub-html="<?php echo $value['content-description']; ?>"
-				data-src="<?php echo $value['url-image']; ?>"
-				data-exthumbimage="<?php echo $value['url-image']; ?>"
+				data-src="<?php echo esc_url( $value['url-image'] ); ?>"
+				data-exthumbimage="<?php echo esc_url( $value['url-image'] ); ?>"
 				data-slide-name="queretaro"
 			>
 

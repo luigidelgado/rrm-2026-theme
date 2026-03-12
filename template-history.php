@@ -92,7 +92,7 @@ if ( have_posts() ) :
 	<section class="history-intro">
 		<div class="history-intro--left">
 			<div class="history-intro__image">
-				<img src="<?php echo $origen_bg[0]; ?>" alt="">
+				<img src="<?php echo esc_url( $origen_bg[0] ); ?>" alt="">
 			</div>
 		</div>
 		<div class="history-intro--right">
@@ -145,7 +145,7 @@ if ( have_posts() ) :
 					<?php } else { ?>
 					<div class="tab-content-image">
 						<?php } ?>
-						<img src="<?php echo $img; ?>" alt="">
+						<img src="<?php echo esc_url( $img ); ?>" alt="">
 					</div>
 						<?php
 						++$index;
@@ -228,7 +228,7 @@ if ( have_posts() ) :
 				</div>
 			</div>
 			<div class="history-experience--right">
-				<img src="<?php echo $exp_bg[0]; ?>" alt="">
+				<img src="<?php echo esc_url( $exp_bg[0] ); ?>" alt="">
 			</div>
 		</div>
 

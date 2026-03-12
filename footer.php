@@ -69,9 +69,9 @@
 					<div class="rr_data_contact">
 						<h3><?php echo $titulo_contacto; ?></h3>
 						<a target="_blank" href="https://wa.me/<?php echo $whatsappContacto; ?>"><img
-								src="<?php echo $whats; ?>" alt="<?php echo $whatsappContacto; ?>">
+								src="<?php echo esc_url( $whats ); ?>" alt="<?php echo $whatsappContacto; ?>">
 							<?php echo $whatsappContacto; ?></a>
-						<a href="mailto:<?php echo $emailContacto; ?>"><img src="<?php echo $email; ?>"
+						<a href="mailto:<?php echo $emailContacto; ?>"><img src="<?php echo esc_url( $email ); ?>"
 								alt="<?php echo $emailContacto; ?>">
 							<?php echo $emailContacto; ?></a>
 					</div>
@@ -104,17 +104,17 @@
 						<!-- <p>Copyright © <?php // echo date('Y'); ?> Rodando Rutas Mágicas</p>
 						<p>Diseño web y desarrollo por g4a</p> -->
 					</div>
-					<a class="logo" href="<?php ( site_url() ); ?>"><img src="<?php echo $logoA; ?>" alt="logo"></a>
+					<a class="logo" href="<?php ( site_url() ); ?>"><img src="<?php echo esc_url( $logoA ); ?>" alt="logo"></a>
 					<div class="rr_footer_social">
 						<p><?php echo $texto_redes_sociales; ?></p>
 						<div class="rr_social">
-							<a target="_blank" href="<?php echo $urlFacebook; ?>"><img src="<?php echo $face; ?>"
+							<a target="_blank" href="<?php echo esc_url( $urlFacebook ); ?>"><img src="<?php echo esc_url( $face ); ?>"
 									alt="<?php echo $urlFacebook; ?>"></a>
-							<a target="_blank" href="<?php echo $urlInstagram; ?>"><img src="<?php echo $insta; ?>"
+							<a target="_blank" href="<?php echo esc_url( $urlInstagram ); ?>"><img src="<?php echo esc_url( $insta ); ?>"
 									alt="<?php echo $urlInstagram; ?>"></a>
-							<a target="_blank" href="<?php echo $urlTwitter; ?>"><img src="<?php echo $twi; ?>"
+							<a target="_blank" href="<?php echo esc_url( $urlTwitter ); ?>"><img src="<?php echo esc_url( $twi ); ?>"
 									alt="<?php echo $urlTwitter; ?>"></a>
-							<a target="_blank" href="<?php echo $urlYoutube; ?>"><img src="<?php echo $you; ?>"
+							<a target="_blank" href="<?php echo esc_url( $urlYoutube ); ?>"><img src="<?php echo esc_url( $you ); ?>"
 									alt="<?php echo $urlYoutube; ?>"></a>
 						</div>
 

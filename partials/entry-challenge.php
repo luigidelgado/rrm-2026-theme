@@ -1,8 +1,8 @@
 <article class="challenge">
-	<a href="<?php echo $args['url']; ?>">
-		<img src="<?php echo $args['url-image']; ?>" alt="">
+	<a href="<?php echo esc_url( $args['url'] ); ?>">
+		<img src="<?php echo esc_url( $args['url-image'] ); ?>" alt="">
 		<div class="challenge__medal">
-			<img src="<?php echo $args['url-medal']; ?>" alt="">
+			<img src="<?php echo esc_url( $args['url-medal'] ); ?>" alt="">
 		</div>
 		<div class="challenge__content">
 			<?php /*<span class="category"><?php echo $args['category']; ?></span> */ ?>

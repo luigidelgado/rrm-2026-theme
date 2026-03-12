@@ -131,7 +131,7 @@ get_header();
 					<div class="rule-info">
 						<?php } ?>
 						<div>
-							<img src="<?php echo $reglaImg; ?>" alt="<?php echo $regla->post_title; ?>">
+							<img src="<?php echo esc_url( $reglaImg ); ?>" alt="<?php echo $regla->post_title; ?>">
 						</div>
 						<div>
 						<?php echo $regla->post_content; ?>
@@ -162,7 +162,7 @@ get_header();
 								</span></button>
 							<div class="accordion-content">
 								<div>
-									<img src="<?php echo $reglaImg; ?>" alt="<?php echo $regla->post_title; ?>">
+									<img src="<?php echo esc_url( $reglaImg ); ?>" alt="<?php echo $regla->post_title; ?>">
 								</div>
 								<div>
 									<?php echo $regla->post_content; ?>

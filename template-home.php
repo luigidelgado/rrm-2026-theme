@@ -283,9 +283,9 @@ get_header();
 				<?php if ( $nosotros_img != '' ) : ?>
 				<div class="right_content">
 					<?php if ( $nosotros_img_url != '' ) : ?>
-					<a href="<?php echo $nosotros_img_url; ?>">
+					<a href="<?php echo esc_url( $nosotros_img_url ); ?>">
 					<?php endif; ?>
-						<img src="<?php echo $nosotros_img[0]; ?>" alt="">
+						<img src="<?php echo esc_url( $nosotros_img[0] ); ?>" alt="">
 					<?php if ( $nosotros_img_url != '' ) : ?>
 					</a>
 					<?php endif; ?>
@@ -293,10 +293,10 @@ get_header();
 				<?php else : ?>
 				<div class="right_content">
 					<?php if ( $nosotros_img_url != '' ) : ?>
-					<a href="<?php echo $nosotros_img_url; ?>">
+					<a href="<?php echo esc_url( $nosotros_img_url ); ?>">
 					<?php endif; ?>
-					<img src="<?php echo $logoBlack; ?>" alt="logo_black">
-					<img src="<?php echo $logoColor; ?>" class="img-top">
+					<img src="<?php echo esc_url( $logoBlack ); ?>" alt="logo_black">
+					<img src="<?php echo esc_url( $logoColor ); ?>" class="img-top">
 					<?php if ( $nosotros_img_url != '' ) : ?>
 					</a>
 					<?php endif; ?>
@@ -339,14 +339,14 @@ get_header();
 	<section id="home_banner_1">
 		<div class="container ">
 			<div class="content_banner">
-				<div class="bg_banner" style="background-image:url(<?php echo $b1_bg[0]; ?>);">
+				<div class="bg_banner" style="background-image:url(<?php echo esc_url( $b1_bg[0] ); ?>);">
 					<div class="left_content">
 						<h2><?php echo $b1_titulo; ?></h2>
 						<p><?php echo $b1_descripcion; ?></p>
-						<a href="<?php echo $b1_url; ?>"><?php echo $b1_txt_url; ?></a>
+						<a href="<?php echo esc_url( $b1_url ); ?>"><?php echo $b1_txt_url; ?></a>
 					</div>
 					<div class="right_content">
-						<img src="<?php echo $b1_id[0]; ?>" alt="pin">
+						<img src="<?php echo esc_url( $b1_id[0] ); ?>" alt="pin">
 					</div>
 				</div>
 
@@ -363,19 +363,19 @@ get_header();
 				</div>
 				<div class="down_content">
 					<div class="card_mision">
-						<img src="<?php echo $mision; ?>" alt="mision">
+						<img src="<?php echo esc_url( $mision ); ?>" alt="mision">
 						<h3><?php echo $mision_tizq; ?></h3>
 						<?php /* <p><?php echo $mision_dizq ?></p> */ ?>
 						<?php echo wpautop( $mision_dizq ); ?>
 					</div>
 					<div class="card_mision center_card">
-						<img src="<?php echo $vision; ?>" alt="vision">
+						<img src="<?php echo esc_url( $vision ); ?>" alt="vision">
 						<h3><?php echo $mision_tc; ?></h3>
 						<?php /*<p><?php echo $mision_dc ?></p>*/ ?>
 						<?php echo wpautop( $mision_dc ); ?>
 					</div>
 					<div class="card_mision">
-						<img src="<?php echo $valores; ?>" alt="valores">
+						<img src="<?php echo esc_url( $valores ); ?>" alt="valores">
 						<h3><?php echo $mision_tder; ?></h3>
 						<?php /*<p><?php echo $mision_dder ?></p>*/ ?>
 						<?php echo wpautop( $mision_dder ); ?>
@@ -438,7 +438,7 @@ get_header();
 								?>
 
 						<a class="slide_salon" href="<?php echo get_permalink( $sf->ID ); ?>">
-							<img src="<?php echo $thumb; ?>" alt="salon">
+							<img src="<?php echo esc_url( $thumb ); ?>" alt="salon">
 							<div class="caption_slide">
 								<p class="user_name"><?php echo $user_name; ?></p>
 								<p class="user_id"><?php echo $user_level['level']; ?></p>
@@ -470,7 +470,7 @@ get_header();
 		?>
 
 	<section id="home_top_desafios">
-		<div class="bg_top_desafios" style="background-image:url(<?php echo $bg_desafios; ?>);">
+		<div class="bg_top_desafios" style="background-image:url(<?php echo esc_url( $bg_desafios ); ?>);">
 			<div class="container">
 				<div class="top_content">
 					<p><?php echo $ultimas_fotos_intro; ?></p>
@@ -527,14 +527,14 @@ get_header();
 
 				<div class="image-grid__item">
 					<div class="grid-item">
-						<div class="grid-item__image" style="background-image: url(<?php echo $thumb; ?>)">
+						<div class="grid-item__image" style="background-image: url(<?php echo esc_url( $thumb ); ?>)">
 						</div>
 						<div class="caption_item">
 							<!-- <p>Touring</p> -->
 							<h4><?php echo $desafio->post_title; ?></h4>
 							<a href="<?php echo get_permalink( $desafio->ID ); ?>"><?php echo $recorriendo_mexico_desafio_txt_bt; ?></a>
 						</div>
-						<img src="<?php echo $patch[0]; ?>" alt="parche">
+						<img src="<?php echo esc_url( $patch[0] ); ?>" alt="parche">
 					</div>
 				</div>
 						<?php
@@ -572,7 +572,7 @@ get_header();
 					</div>
 					<h2><?php echo $pasion_biker_titulo; ?> </h2>
 					<!-- <a href="<?php // echo get_post_type_archive_link('post'); ?>"><?php // echo $pasion_biker_txt_bt; ?></a>-->
-					<a href="<?php echo $blog_link; ?>"><?php echo $pasion_biker_txt_bt; ?></a>  
+					<a href="<?php echo esc_url( $blog_link ); ?>"><?php echo $pasion_biker_txt_bt; ?></a>  
 				</div>
 				<div class="right_content">
 					<?php
@@ -590,7 +590,7 @@ get_header();
 							$thumb = get_the_post_thumbnail_url( $post->ID, 'full' )
 							?>
 					<a href="<?php the_permalink(); ?>" class="card_pasion">
-						<img src="<?php echo $thumb; ?>" alt="pasion">
+						<img src="<?php echo esc_url( $thumb ); ?>" alt="pasion">
 						<div class="info_pasion">
 							<p class="title"><?php the_title(); ?></p>
 							<p class="date"><?php echo get_the_date(); ?></p>
@@ -606,7 +606,7 @@ get_header();
 
 			<div class="btn_pasion_mobile">
 				<?php /*<a href="<?php echo get_post_type_archive_link('post');  ?>"><?php echo $pasion_biker_txt_bt; ?></a> */ ?>
-				<a href="<?php echo $blog_link; ?>"><?php echo $pasion_biker_txt_bt; ?></a>   
+				<a href="<?php echo esc_url( $blog_link ); ?>"><?php echo $pasion_biker_txt_bt; ?></a>   
 			</div>
 		</div>
 	</section>
@@ -615,12 +615,12 @@ get_header();
 	<section id="home_localiza">
 		<div class="container">
 			<div class="content_localiza">
-				<div class="banner_localiza" style="background-image:url(<?php echo $bl_bg[0]; ?>);">
+				<div class="banner_localiza" style="background-image:url(<?php echo esc_url( $bl_bg[0] ); ?>);">
 					<div class="title_small">
 						<p><?php echo $bl_subtitulo ?></p>
 					</div>
 					<h2><?php echo $bl_titulo ?></h2>
-					<a href="<?php echo $bl_url ?>"><?php echo $bl_txt_url ?></a>
+					<a href="<?php echo esc_url( $bl_url ); ?>"><?php echo $bl_txt_url ?></a>
 				</div>
 			</div>
 		</div>
@@ -637,11 +637,11 @@ get_header();
 					<h2>
 						<?php echo $bl_titulo; ?>
 					</h2>
-					<a href="<?php echo $bl_url; ?>"><?php echo $bl_txt_url; ?></a>
+					<a href="<?php echo esc_url( $bl_url ); ?>"><?php echo $bl_txt_url; ?></a>
 				</div>
 				<div class="content_localiza_c_right">
-					<a href="<?php echo $bl_bg_url; ?>">
-						<img src="<?php echo $bl_bg[0]; ?>" alt="">
+					<a href="<?php echo esc_url( $bl_bg_url ); ?>">
+						<img src="<?php echo esc_url( $bl_bg[0] ); ?>" alt="">
 					</a>   
 				</div>
 				
@@ -650,7 +650,7 @@ get_header();
 	</section>
 
 	<section id="home_unete">
-		<div class="bg_unete" style="background-image:url(<?php echo $bg_unete; ?>);">
+		<div class="bg_unete" style="background-image:url(<?php echo esc_url( $bg_unete ); ?>);">
 			<div class="container">
 				<div class="banner_unete">
 					<h2><?php echo $newsletter_titulo; ?></h2>

@@ -13,7 +13,7 @@
 		<?php if ( $key === 0 ) : ?>
 		<img 
 			class="img-responsive" 
-			src="<?php echo $value['url-image']; ?>" 
+			src="<?php echo esc_url( $value['url-image'] ); ?>" 
 			data-sub-html="<?php echo esc_attr( $value['content-title'] ); ?>
 			<?php
 			if ( $value['content-description'] ) :
@@ -31,8 +31,8 @@ endif;
 endif;
 			?>
 "
-			data-exthumbimage="<?php echo $value['url-image']; ?>" 
-			data-src="<?php echo $value['url-image']; ?>" 
+			data-exthumbimage="<?php echo esc_url( $value['url-image'] ); ?>" 
+			data-src="<?php echo esc_url( $value['url-image'] ); ?>" 
 			data-post-id="<?php echo $value['post-id']; ?>"
 			data-tweet-text="<?php echo $args['x-title']; ?>"
 			data-facebook-share-url="<?php echo home_url() . '/mi-perfil/?uid=' . getUserId() . '#lg=gal' . $args['gallery-number'] . '&slide=' . $key; ?>"
@@ -59,8 +59,8 @@ endif;
 endif;
 			?>
 " 
-			data-src="<?php echo $value['url-image']; ?>"
-			data-exthumbimage="<?php echo $value['url-image']; ?>"
+			data-src="<?php echo esc_url( $value['url-image'] ); ?>"
+			data-exthumbimage="<?php echo esc_url( $value['url-image'] ); ?>"
 			data-post-id="<?php echo $value['post-id']; ?>"
 			data-tweet-text="<?php echo $args['x-title']; ?>"
 			data-facebook-share-url="<?php echo home_url() . '/mi-perfil/?uid=' . getUserId() . '#lg=gal' . $args['gallery-number'] . '&slide=' . $key; ?>"
