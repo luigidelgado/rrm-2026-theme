@@ -7,6 +7,10 @@ debug.log
 # Dependencias de Node (assets build)
 assets/node_modules/
 
+# Webpack CSS-entry stub JS files (vacíos, generados automáticamente)
+assets/dist/theme-css.js
+assets/dist/theme-c-css.js
+
 # OS
 .DS_Store
 Thumbs.db
