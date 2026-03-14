@@ -1,0 +1,1 @@
+jQuery("#home_salon_fama .right_content .slider_salon").slick({infinite:!1,slidesToShow:3,slidesToScroll:1,arrows:!0,autoplay:!1,centerMode:!1,centerPadding:"0px"});
