@@ -1,49 +1,49 @@
 <?php /* Template Name: Single Challenge */ ?>
 <?php get_header(); ?>
 
-<?php 
-    get_template_part( 
-        'partials/intro-header',
-        'intro-header',
-        array(
-            'url' => get_template_directory_uri().'/assets/images/challenges/headeimage.png'
-        )
-    );
-?>
+<?php
+	get_template_part(
+		'partials/intro-header',
+		'intro-header',
+		array(
+			'url' => get_template_directory_uri() . '/assets/images/challenges/headeimage.png',
+		)
+	);
+	?>
 
 
 <div class="container">
 	<div class="single-challenge-content">
 		<main>
-            <div class="single-challenge-content__the-content">
+			<div class="single-challenge-content__the-content">
 
 			<!-- Aqui va el content -->
 			<!-- Para las tablas se utilizo el diseño de froy con la clase is-style-regular -->
-                <p>
-                    Bienvenido al desafío Carreteras Famosas, en todo el territorio nacional podemos encontrar diversas geografías que permiten el trazado de carreteras con diferentes grados de experticia o bien ofrecen un atractivo particular ya sea natural, panorámico o de experiencia al transitar por ellas, honramos a los pilotos que tienen la valentía de rodarlas y sumarlas a su récord personal de caminos rodados.
-                </p>
-                <p> 
-                    El reto es rodar en tu motocicleta por estos caminos legendarios, vivir la experiencia y guardar en tu memoria cada kilómetro vivido que servirá de anecdotario para futuras generaciones de moto turistas, de viva voz de quien rodó estos caminos.
-                </p>
-            </div>
-            <!-- Estructura definida -->
-            <div class="single-challenge-content__defined">
-                <div class="single-challenge-content__objetive">
+				<p>
+					Bienvenido al desafío Carreteras Famosas, en todo el territorio nacional podemos encontrar diversas geografías que permiten el trazado de carreteras con diferentes grados de experticia o bien ofrecen un atractivo particular ya sea natural, panorámico o de experiencia al transitar por ellas, honramos a los pilotos que tienen la valentía de rodarlas y sumarlas a su récord personal de caminos rodados.
+				</p>
+				<p> 
+					El reto es rodar en tu motocicleta por estos caminos legendarios, vivir la experiencia y guardar en tu memoria cada kilómetro vivido que servirá de anecdotario para futuras generaciones de moto turistas, de viva voz de quien rodó estos caminos.
+				</p>
+			</div>
+			<!-- Estructura definida -->
+			<div class="single-challenge-content__defined">
+				<div class="single-challenge-content__objetive">
 					<div>
 						<h3>Objetivo</h3>
 						<p>
 							Rodar las carreteras más famosas de México.
 						</p>
 					</div>
-                </div>
-                <div class="single-challenge-content__patch">
+				</div>
+				<div class="single-challenge-content__patch">
 					<div>
 						<h3>Parche</h3>
-						<img src="<?php echo get_template_directory_uri().'/assets/images/challenges/carreteras-famosas.png'; ?>" alt="">
+						<img src="<?php echo get_template_directory_uri() . '/assets/images/challenges/carreteras-famosas.png'; ?>" alt="">
 					</div>
-                </div>
-            </div>
-            <!-- Estructura definida -->
+				</div>
+			</div>
+			<!-- Estructura definida -->
 			<div class="single-challenge-content__the-content">
 				<h2>Total de piezas: 4</h2>
 				<p>
@@ -120,26 +120,26 @@
 		<aside>
 			<div class="aside-component recent-posts">
 				<h2>Otros desafios</h2>
-				<?php 
-					get_template_part( 
+				<?php
+					get_template_part(
 						'partials/entry-blog-sidebar',
 						'entry-blog-sidebar',
 						array(
-							'image-url' => get_template_directory_uri().'/assets/images/blog/gallery-3.jpg',
-							'post-title' => "DESAFÍO MÉXICO AZUL",
+							'image-url'  => get_template_directory_uri() . '/assets/images/blog/gallery-3.jpg',
+							'post-title' => 'DESAFÍO MÉXICO AZUL',
 						)
 					);
-				?>
-			    <?php 
-					get_template_part( 
+					?>
+				<?php
+					get_template_part(
 						'partials/entry-blog-sidebar',
 						'entry-blog-sidebar',
 						array(
-							'image-url' => get_template_directory_uri().'/assets/images/blog/gallery-3.jpg',
-							'post-title' => "DESAFÍO MÉXICO X-TREMO",
+							'image-url'  => get_template_directory_uri() . '/assets/images/blog/gallery-3.jpg',
+							'post-title' => 'DESAFÍO MÉXICO X-TREMO',
 						)
 					);
-				?>
+					?>
 			</div>
 			<div class="aside-component categories">
 				<h2>Categorias</h2>

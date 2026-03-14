@@ -1,3 +1,3 @@
 <blockquote>
-    <?php echo $args['content'] ?>    
+	<?php echo $args['content']; ?>    
 </blockquote> 
