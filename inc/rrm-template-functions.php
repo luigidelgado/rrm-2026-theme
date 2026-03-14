@@ -1948,37 +1948,37 @@ function my_comments_open( $open, $post_id ) {
  * Se obtiene el id del desafio en base al nombre del post,lo habia colocado con el id pero se cambiaba 
 */
 
-function getMagicTownRoaded(){
-    // Lo coloque asi por que se cambiaba el id del post
-    //$post = get_page_by_title('Desafío Pueblos Mágicos RRM', null , 'desafios');
-    //var_dump($post);
-    //$user = wp_get_current_user();
-    $userID = getUserId();
-    //var_dump($userID);
-    $args3 = array( 
-        'post_type' => 'galerias',
-        'post_status' => 'publish', 
-        'post_per_page' => -1,
-        'nopaging' => true,
-        'meta_query' => array(
+function getMagicTownRoaded() {
+    $userID        = getUserId();
+    $transient_key = 'rrm_magic_towns_' . (int) $userID;
+    $cached        = get_transient( $transient_key );
+    if ( false !== $cached ) {
+        return (int) $cached;
+    }
+
+    $args3 = array(
+        'post_type'   => 'galerias',
+        'post_status' => 'publish',
+        'nopaging'    => true,
+        'meta_query'  => array(
             'relation' => 'AND',
-                array(
-                    'key' => 'rodador',
-                    //'value' => $user->ID,
-                    'value' => $userID,
-                    'compare' => '='
-                ),
-                array(
-                    'key' => 'reto',
-                    'value' => 26513, //Id de desafios de pueblos mágicos
-                    'compare' => '='
-                )
-        )
+            array(
+                'key'     => 'rodador',
+                'value'   => $userID,
+                'compare' => '=',
+            ),
+            array(
+                'key'     => 'reto',
+                'value'   => 26513, // Id de desafios de pueblos mágicos
+                'compare' => '=',
+            ),
+        ),
     );
-        
+
     $posts_array3 = new WP_Query( $args3 );
-    //var_dump($posts_array3);
-    return $posts_array3->post_count;
+    $count        = $posts_array3->post_count;
+    set_transient( $transient_key, $count, 12 * HOUR_IN_SECONDS );
+    return $count;
 }
 
 //======================================================================
@@ -1993,30 +1993,26 @@ function getMagicTownRoaded(){
  * Obtener la lista de los desafíos para mostrar en los dropdown, con la restricción de la membresía.
 */
 
-function get_challengues(){
-    
-    //$results_transient_challengues = get_transient('challengues_transient');
+function get_challengues() {
+    $user_id = get_current_user_id();
+    // Include a generation key so the cache is busted globally when desafios change.
+    $gen           = (int) get_option( 'rrm_challengues_gen', 0 );
+    $transient_key = 'rrm_challengues_' . $user_id . '_' . $gen;
+    $cached        = get_transient( $transient_key );
+    if ( false !== $cached ) {
+        return $cached;
+    }
 
-    //if (false === $results_transient_challengues) {
-        // El transient no existe, ejecutar la consulta
-        $args = array(
-            // Configura los argumentos de tu consulta WP_Query
-            'post_type' => 'desafios',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'post__in'=> getAvalaiblesDestinosPlanMember(get_current_user_id())
-        );
-        $query = new WP_Query($args);
+    $args = array(
+        'post_type'      => 'desafios',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'post__in'       => getAvalaiblesDestinosPlanMember( $user_id ),
+    );
+    $query = new WP_Query( $args );
 
-        // Guardar los resultados de la consulta en un transient
-        //set_transient('challengues_transient', $query, 86400);
-
-        // Devolver la consulta completa
-        return $query;
-//    } else {
-        // El transient existe, devolver los resultados almacenados en él
-  //      return $results_transient_challengues;
-//    }
+    set_transient( $transient_key, $query, 12 * HOUR_IN_SECONDS );
+    return $query;
 }
 
 //======================================================================
@@ -2032,30 +2028,21 @@ function get_challengues(){
  * Obtener la lista de los desafíos para mostrar en los dropdown 
 */
 
-function get_all_challengues(){
-    
-    //$results_transient_challengues = get_transient('challengues_transient');
+function get_all_challengues() {
+    $cached = get_transient( 'rrm_all_challengues' );
+    if ( false !== $cached ) {
+        return $cached;
+    }
 
-    //if (false === $results_transient_challengues) {
-        // El transient no existe, ejecutar la consulta
-        $args = array(
-            // Configura los argumentos de tu consulta WP_Query
-            'post_type' => 'desafios',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            //'post__in'=> getAvalaiblesDestinosPlanMember(get_current_user_id())
-        );
-        $query = new WP_Query($args);
+    $args = array(
+        'post_type'      => 'desafios',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+    );
+    $query = new WP_Query( $args );
 
-        // Guardar los resultados de la consulta en un transient
-        //set_transient('challengues_transient', $query, 86400);
-
-        // Devolver la consulta completa
-        return $query;
-//    } else {
-        // El transient existe, devolver los resultados almacenados en él
-  //      return $results_transient_challengues;
-//    }
+    set_transient( 'rrm_all_challengues', $query, 24 * HOUR_IN_SECONDS );
+    return $query;
 }
 
 //======================================================================
@@ -2721,38 +2708,39 @@ function progressChallengue($idUser){
  * Se obtienen los post de galería que han sido aprobados, agrupados por desafío
 */
 
-function userGalleryGroupedByChallengue($userId){
+function userGalleryGroupedByChallengue( $userId ) {
+    $grouped_posts = array();
+    if ( empty( $userId ) ) {
+        return $grouped_posts;
+    }
 
-  $grouped_posts = array();
-  if ( !empty($userId)  ) {
-  
-      $args = array( 
-          //'author' => $user->ID,
-          'post_type' => 'galerias',
-          'post_status' => 'publish', 
-          'meta_key'      => 'rodador',
-          'meta_value'    => $userId,
-          'numberposts'      => -1,
-          'nopaging' => true
-      );
+    $transient_key = 'rrm_gallery_grouped_' . (int) $userId;
+    $cached        = get_transient( $transient_key );
+    if ( false !== $cached ) {
+        return $cached;
+    }
 
-      $posts_array = get_posts( $args );
-      // echo "<pre>";
-      // var_dump($posts_array);
-      // echo "</pre>";
+    $args = array(
+        'post_type'   => 'galerias',
+        'post_status' => 'publish',
+        'meta_key'    => 'rodador',
+        'meta_value'  => $userId,
+        'numberposts' => -1,
+        'nopaging'    => true,
+    );
 
-      foreach( $posts_array as $the_post ) {
-          $reto = get_field('reto', $the_post->ID);
-          
-          if( !isset($grouped_posts[$reto]) ){
-              $grouped_posts[$reto] = array();
-          }
-          
-          $grouped_posts[$reto][] = $the_post;
-      }
-  }
+    $posts_array = get_posts( $args );
 
-  return $grouped_posts;
+    foreach ( $posts_array as $the_post ) {
+        $reto = get_field( 'reto', $the_post->ID );
+        if ( ! isset( $grouped_posts[ $reto ] ) ) {
+            $grouped_posts[ $reto ] = array();
+        }
+        $grouped_posts[ $reto ][] = $the_post;
+    }
+
+    set_transient( $transient_key, $grouped_posts, 12 * HOUR_IN_SECONDS );
+    return $grouped_posts;
 }
 
 //======================================================================
