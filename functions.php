@@ -89,50 +89,81 @@ add_action( 'wp_enqueue_scripts', 'profilegrid_user_profiles_groups_and_communit
 add_action( 'wp_enqueue_scripts', 'rr_register_scripts' );
 
 function rr_register_styles() {
-	wp_enqueue_style( 'bootstrap-css', '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css', array(), '1.0', 'all' );
-	wp_enqueue_style( 'fonts', '//fonts.googleapis.com/css2?family=Teko:wght@300;400;500;700&display=swap', array(), '1.0', 'all' );
-	wp_enqueue_style( 'slick-css', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css', array(), '1.0', 'all' );
-	wp_enqueue_style( 'slick-theme', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css', array(), '1.0', 'all' );
-	wp_enqueue_style( 'styles-swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', false, '1.0', 'all' );
-	wp_enqueue_style( 'styles-date-picker', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css', false, '1.0', 'all' );
+	// ── Bootstrap 4.6.2 (última versión 4.x — jsDelivr, stackpath cerró en 2023) ──
+	wp_enqueue_style( 'bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css', array(), '4.6.2', 'all' );
+
+	// ── Fuentes ──
+	wp_enqueue_style( 'rrm-fonts', 'https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;700&display=swap', array(), null, 'all' );
+
+	// ── Slick Carousel 1.9.0 ──
+	wp_enqueue_style( 'slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.9.0/slick/slick.css', array(), '1.9.0', 'all' );
+	wp_enqueue_style( 'slick-theme', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.9.0/slick/slick-theme.css', array(), '1.9.0', 'all' );
+
+	// ── Swiper 11 ──
+	wp_enqueue_style( 'styles-swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0', 'all' );
+
+	// ── Bootstrap Datepicker 1.10.0 ──
+	wp_enqueue_style( 'styles-date-picker', 'https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker.min.css', array( 'bootstrap-css' ), '1.10.0', 'all' );
+
+	// ── Assets propios del tema ──
 	wp_enqueue_style( 'main-styles', get_template_directory_uri() . '/assets/dist/theme.css', array(), '1.4.2.2', 'all' );
 	wp_enqueue_style( 'secondary-styles', get_template_directory_uri() . '/assets/dist/theme-c.css', array(), '1.2.2.7', 'all' );
 
-	// Gallery
-	wp_enqueue_style( 'lightgallery-css', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery.css', false, '1.0', 'all' );
-	wp_enqueue_style( 'lightgallery-zoom-css', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-zoom.css', false, '1.0', 'all' );
-	wp_enqueue_style( 'lightgallery-thumbnail-css', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-thumbnail.css', false, '1.0', 'all' );
-	wp_enqueue_style( 'lightgallery-screen-css', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-fullscreen.css', false, '1.0', 'all' );
-	wp_enqueue_style( 'lightgallery-autoplay-css', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-autoplay.css', false, '1.0', 'all' );
-	wp_enqueue_style( 'lightgallery-share-css', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-share.css', false, '1.0', 'all' );
+	// ── LightGallery 2.7.2 (versión estable, no beta) ──
+	wp_enqueue_style( 'lightgallery-css', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery.css', array(), '2.7.2', 'all' );
+	wp_enqueue_style( 'lightgallery-zoom-css', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lg-zoom.css', array( 'lightgallery-css' ), '2.7.2', 'all' );
+	wp_enqueue_style( 'lightgallery-thumbnail-css', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lg-thumbnail.css', array( 'lightgallery-css' ), '2.7.2', 'all' );
+	wp_enqueue_style( 'lightgallery-screen-css', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lg-fullscreen.css', array( 'lightgallery-css' ), '2.7.2', 'all' );
+	wp_enqueue_style( 'lightgallery-autoplay-css', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lg-autoplay.css', array( 'lightgallery-css' ), '2.7.2', 'all' );
+	wp_enqueue_style( 'lightgallery-share-css', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lg-share.css', array( 'lightgallery-css' ), '2.7.2', 'all' );
 }
 
 
 function rr_register_scripts() {
+	// ── ProfileGrid: reemplazar JS del plugin con versión del tema ──
 	wp_deregister_script( 'pg-profile-menu.js' );
 	wp_dequeue_script( 'pg-profile-menu.js' );
-	wp_enqueue_script( 'pg-profile-menu.js-child', get_template_directory_uri() . '/profilegrid-user-profiles-groups-and-communities/js/pg-profile-menu.js', array( 'jquery' ), '1.0', false );
+	wp_enqueue_script( 'pg-profile-menu.js-child', get_template_directory_uri() . '/profilegrid-user-profiles-groups-and-communities/js/pg-profile-menu.js', array( 'jquery' ), '1.0', true );
 
-	// Gallery
-	wp_enqueue_script( 'lightgallery', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/lightgallery.umd.js', array(), '1.0', true );
-	wp_enqueue_script( 'lightgallery-zoom', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/zoom/lg-zoom.umd.js', array(), '1.0', true );
-	wp_enqueue_script( 'lightgallery-thumbnail', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/thumbnail/lg-thumbnail.umd.js', array(), '1.0', true );
-	wp_enqueue_script( 'lightgallery-fullscreen', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/fullscreen/lg-fullscreen.umd.js', array(), '1.0', true );
-	wp_enqueue_script( 'lightgallery-autoplay', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/autoplay/lg-autoplay.umd.js', array(), '1.0', true );
-	wp_enqueue_script( 'lightgallery-share', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/share/lg-share.umd.js', array(), '1.0', true );
-	wp_enqueue_script( 'lightgallery-hash', '//cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/hash/lg-hash.min.js', array(), '1.0', true );
+	// ── LightGallery 2.7.2 (versión estable) ──
+	wp_enqueue_script( 'lightgallery', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.umd.js', array(), '2.7.2', true );
+	wp_enqueue_script( 'lightgallery-zoom', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.umd.js', array( 'lightgallery' ), '2.7.2', true );
+	wp_enqueue_script( 'lightgallery-thumbnail', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.umd.js', array( 'lightgallery' ), '2.7.2', true );
+	wp_enqueue_script( 'lightgallery-fullscreen', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/fullscreen/lg-fullscreen.umd.js', array( 'lightgallery' ), '2.7.2', true );
+	wp_enqueue_script( 'lightgallery-autoplay', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/autoplay/lg-autoplay.umd.js', array( 'lightgallery' ), '2.7.2', true );
+	wp_enqueue_script( 'lightgallery-share', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/share/lg-share.umd.js', array( 'lightgallery' ), '2.7.2', true );
+	wp_enqueue_script( 'lightgallery-hash', 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/hash/lg-hash.umd.js', array( 'lightgallery' ), '2.7.2', true );
 
-	wp_enqueue_script( 'form-validate', '//unpkg.com/just-validate@latest/dist/just-validate.production.min.js', array(), '1.0', true );
-	wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-3.7.1.min.js', array(), '3.7.1', true );
-	wp_enqueue_script( 'jquery-validate', '//cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js', array(), '1.19.5', true );
-	wp_enqueue_script( 'slick-js-defer', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js', array(), '1.8.0', true );
-	wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js' );
-	wp_enqueue_script( 'bootstrap-js', '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array(), '2.2.4', true );
-	wp_enqueue_script( 'datepicker', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js', array(), '1.0.10', true );
-	wp_enqueue_script( 'slicknav', '//cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js', array(), '1.0.10', true );
-	wp_enqueue_script( 'recaptcha_g', '//google.com/recaptcha/api.js?onload=onloadCallback&render=explicit', array(), '1.0.12', true );
-	wp_enqueue_script( 'main-scripts', get_template_directory_uri() . '/assets/dist/theme.js', array(), '1.2.0.4', true );
-	wp_enqueue_script( 'secondary-scripts', get_template_directory_uri() . '/assets/dist/theme-c.js', array(), '1.0.7.13', true );
+	// ── Validación de formularios (just-validate 4.x, versión fija) ──
+	wp_enqueue_script( 'form-validate', 'https://cdn.jsdelivr.net/npm/just-validate@4.3.0/dist/just-validate.production.min.js', array(), '4.3.0', true );
+
+	// ── jQuery: usar el de WordPress; no re-registrar para no romper el admin ──
+	// WordPress incluye jQuery automáticamente; registrarlo de nuevo puede romper el admin.
+
+	// ── jquery-validate 1.19.5 ──
+	wp_enqueue_script( 'jquery-validate', 'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js', array( 'jquery' ), '1.19.5', true );
+
+	// ── Slick Carousel 1.9.0 ──
+	wp_enqueue_script( 'slick-js-defer', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.9.0/slick/slick.min.js', array( 'jquery' ), '1.9.0', true );
+
+	// ── Swiper 11 (con todos los parámetros correctos) ──
+	wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true );
+
+	// ── Bootstrap 4.6.2 JS (jsDelivr — stackpath CDN cerró en 2023) ──
+	wp_enqueue_script( 'bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js', array( 'jquery' ), '4.6.2', true );
+
+	// ── Bootstrap Datepicker 1.10.0 ──
+	wp_enqueue_script( 'datepicker', 'https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js', array( 'jquery', 'bootstrap-js' ), '1.10.0', true );
+
+	// ── SlickNav 1.0.10 ──
+	wp_enqueue_script( 'slicknav', 'https://cdn.jsdelivr.net/npm/jquery.slicknav@1.0.10/jquery.slicknav.min.js', array( 'jquery' ), '1.0.10', true );
+
+	// ── Google reCAPTCHA v2 (www.google.com, no google.com) ──
+	wp_enqueue_script( 'recaptcha_g', 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit', array(), null, true );
+
+	// ── Assets propios del tema ──
+	wp_enqueue_script( 'main-scripts', get_template_directory_uri() . '/assets/dist/theme.js', array( 'jquery' ), '1.2.0.4', true );
+	wp_enqueue_script( 'secondary-scripts', get_template_directory_uri() . '/assets/dist/theme-c.js', array( 'jquery' ), '1.0.7.13', true );
 	wp_localize_script(
 		'main-scripts',
 		'cc_ajax_object',
@@ -200,8 +231,8 @@ function profilegrid_user_profiles_groups_and_communities_callback() {
 		wp_deregister_script( 'profile-magic-admin-power.js' );
 		wp_dequeue_script( 'profile-magic-admin-power.js' );
 
-		wp_enqueue_script( 'profilegrid-user-profiles-groups-and-communities-child', get_stylesheet_directory_uri() . '/profilegrid-user-profiles-groups-and-communities/js/profile-magic-public.js', array( 'jquery', 'jquery-form' ), null, true );
-		wp_enqueue_script( 'profile-magic-admin-power.js-child', get_stylesheet_directory_uri() . '/profilegrid-user-profiles-groups-and-communities/js/profile-magic-admin-power.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'profilegrid-user-profiles-groups-and-communities-child', get_stylesheet_directory_uri() . '/profilegrid-user-profiles-groups-and-communities/js/profile-magic-public.js', array( 'jquery', 'jquery-form' ), '1.0', true );
+		wp_enqueue_script( 'profile-magic-admin-power.js-child', get_stylesheet_directory_uri() . '/profilegrid-user-profiles-groups-and-communities/js/profile-magic-admin-power.js', array( 'jquery' ), '1.0', true );
 
 		wp_localize_script( 'profile-magic-admin-power.js-child', 'pm_error_object', $error );
 	endif;
