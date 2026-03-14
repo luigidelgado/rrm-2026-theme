@@ -8,9 +8,9 @@
 get_header(); ?>
 
 	<div class="not-found-container">
-		<img src="<?php echo get_template_directory_uri().'/assets/images/404/paisaje-montana-carretera.png'; ?>" alt="">
+		<img src="<?php echo get_template_directory_uri() . '/assets/images/404/paisaje-montana-carretera.png'; ?>" alt="">
 		<div class="container">
-			<?php woocommerce_breadcrumb();  ?>
+			<?php woocommerce_breadcrumb(); ?>
 			<div class="not-found">
 				<div class="not-found__main-content">
 					<h1>

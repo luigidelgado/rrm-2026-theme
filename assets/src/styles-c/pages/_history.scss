@@ -30,7 +30,7 @@
             color: $white;
             text-transform: uppercase;
             @media only screen and (min-width: 768px){
-                margin-block-start: rem(50px);
+                margin-block-start: 3.125rem; // 50px → rem
             }
         }
         p,span,div{

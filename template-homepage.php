@@ -15,9 +15,9 @@
 get_header(); ?>
 
 <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+	<main id="main" class="site-main" role="main">
 
-        <?php
+		<?php
 			/**
 			 * Functions hooked in to homepage action
 			 *
@@ -30,9 +30,9 @@ get_header(); ?>
 			 * @hooked storefront_best_selling_products - 70
 			 */
 			do_action( 'homepage' );
-			?>
+		?>
 
-    </main><!-- #main -->
+	</main><!-- #main -->
 </div><!-- #primary -->
 <?php
 get_footer();

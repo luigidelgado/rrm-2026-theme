@@ -1,19 +1,19 @@
 <?php /* Template Name: My Garage */ ?>
 
 <?php
-    while ( have_posts() ) :
-        the_post();
+while ( have_posts() ) :
+	the_post();
 
-        //do_action( 'storefront_page_before' );
+	// do_action( 'storefront_page_before' );
 
-        get_template_part( 'content', 'page' );
+	get_template_part( 'content', 'page' );
 
-        /**
-         * Functions hooked in to storefront_page_after action
-         *
-         * @hooked storefront_display_comments - 10
-         */
-        //do_action( 'storefront_page_after' );
+	/**
+	 * Functions hooked in to storefront_page_after action
+	 *
+	 * @hooked storefront_display_comments - 10
+	 */
+	// do_action( 'storefront_page_after' );
 
-    endwhile; // End of the loop.
-?>
+	endwhile; // End of the loop.
+

@@ -37,30 +37,30 @@ if ( ! function_exists( 'rrm_share' ) ) {
 
 		?>
 <div class="single-content__share">
-    <h2>Compartir</h2>
+    <h2><?php esc_html_e( 'Compartir', 'storefront' ); ?></h2>
     <ul>
         <li>
-            <a href="<?php echo $link; ?>" id="copy-link">
-                <img src="<?php echo get_template_directory_uri().'/assets/images/single/share-fill-icon.svg'; ?>" alt="">
+            <a href="<?php echo esc_url( $link ); ?>" id="copy-link">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/single/share-fill-icon.svg' ); ?>" alt="">
             </a>
         </li>
         <li>
-            <a href="<?php echo urldecode($facebookLink); ?>"
+            <a href="<?php echo esc_url( urldecode( $facebookLink ) ); ?>"
                 onclick="window.open(this.href, 'Facebook', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
                 target="_blank">
-                <img src="<?php echo get_template_directory_uri().'/assets/images/single/fb-icon-fill.svg'; ?>" alt="">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/single/fb-icon-fill.svg' ); ?>" alt="">
             </a>
         </li>
         <li>
-            <a href="<?php echo urldecode($twitterLink); ?>"
+            <a href="<?php echo esc_url( urldecode( $twitterLink ) ); ?>"
                 onclick="window.open(this.href, 'Twitter', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
                 target="_blank">
-                <img src="<?php echo get_template_directory_uri().'/assets/images/blog/twitter.svg'; ?>" alt="">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/blog/twitter.svg' ); ?>" alt="">
             </a>
         </li>
         <li>
-            <a href="<?php echo urldecode($whatsapp); ?>" data-action="share/whatsapp/share" target="_blank">
-                <img src="<?php echo get_template_directory_uri().'/assets/images/single/whatsapp-fill-icon.svg'; ?>"
+            <a href="<?php echo esc_url( urldecode( $whatsapp ) ); ?>" data-action="share/whatsapp/share" target="_blank">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/single/whatsapp-fill-icon.svg' ); ?>"
                     alt="">
             </a>
         </li>
@@ -148,9 +148,9 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
     <div class="map__top">
         <div class="map__division">
             <div>
-                <?php /* <img src="<? echo get_template_directory_uri().'/assets/images/profile/flag.png'; ?>" alt="">
+                <?php /* <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/flag.png' ); ?>" alt="">
                 */ ?>
-                <img src="<? echo get_template_directory_uri().'/assets/images/profile/map-flag-rrm.svg'; ?>" alt="">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/map-flag-rrm.svg' ); ?>" alt="">
             </div>
             <div>
                 <?php 
@@ -170,16 +170,15 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
                
                     ?>
                 <div>Origen</div>
-                <?php 
-                        if($index === false){
-                            echo "No especificado";
-                        }else{
-                            echo $countries[$index]["name"];
-                            if($index === 142):
-                            echo "<span>".$states[$index2]['nombre']."</span>";
-                            endif;
-                        }
-                        
+                <?php
+                    if ( false === $index ) {
+                        echo esc_html__( 'No especificado', 'storefront' );
+                    } else {
+                        echo esc_html( $countries[ $index ]['name'] );
+                        if ( 142 === $index ) :
+                            echo '<span>' . esc_html( $states[ $index2 ]['nombre'] ) . '</span>';
+                        endif;
+                    }
                     ?>
                 <!-- <div>Michoacán</div> -->
             </div>
@@ -188,12 +187,12 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
             <div>
                 <i class="icon-church"></i>
             </div>
-            <?php $textMagicTownRoaded = getMagicTownRoaded() == 1 ? "Pueblo Mágico rodado" : "Pueblos Mágicos rodados"; ?>
+            <?php $textMagicTownRoaded = 1 === getMagicTownRoaded() ? 'Pueblo Mágico rodado' : 'Pueblos Mágicos rodados'; ?>
             <div>
-                <?php echo getMagicTownRoaded(); ?>
+                <?php echo absint( getMagicTownRoaded() ); ?>
             </div>
             <div>
-                <?php echo $textMagicTownRoaded; ?>
+                <?php echo esc_html( $textMagicTownRoaded ); ?>
             </div>
         </div>
         <div class="map__challengue">
@@ -211,12 +210,12 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
                 <i class="icon-goal"></i>
             </div>
             <div>
-                <?php echo  $numCompletedChallengues; ?>
+                <?php echo absint( $numCompletedChallengues ); ?>
             </div>
             <div>
                 <?php
-                    $textChallengueMilestone = $numCompletedChallengues == 1 ? 'desafío' : 'desafios';
-                    echo $textChallengueMilestone.' completados';
+                $textChallengueMilestone = 1 === $numCompletedChallengues ? 'desafío' : 'desafios';
+                echo esc_html( $textChallengueMilestone . ' completados' );
                 ?>
                 <!-- Desafíos Cada completados En los últimos seis años -->
             </div>
@@ -248,7 +247,7 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
             <i class="icon-share"></i>
             <div class="map__share-social">
                 <div class="fb-share-button-custom"
-                    data-href="<?php echo $homeURL.'/mi-perfil/?uid='.$userID.'#mimapa3'; ?>">
+                    data-href="<?php echo esc_url( $homeURL . '/mi-perfil/?uid=' . absint( $userID ) . '#mimapa3' ); ?>">
                     <i class="icon-fb-icon-fill"></i>
                     <span>Facebook</span>
                 </div>
@@ -257,8 +256,8 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
                         $shareDescription =  get_field('descripcion_compartir_mapa', 546);
                     ?>
                 <div class="twitter-share-button-custom"
-                    data-href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink().'mi-perfil/?uid='.$userID.'#mimapa3'); ?>"
-                    data-text="<?php echo $shareTitle ?>" data-description="<?php echo $shareDescription ?>">
+                    data-href="<?php echo esc_url( 'https://twitter.com/intent/tweet?url=' . rawurlencode( get_permalink() . 'mi-perfil/?uid=' . absint( $userID ) . '#mimapa3' ) ); ?>"
+                    data-text="<?php echo esc_attr( $shareTitle ); ?>" data-description="<?php echo esc_attr( $shareDescription ); ?>">
                     <i class="icon-twitter-fill"></i>
                     <span>Twitter</span>
                 </div>
@@ -269,7 +268,7 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
                 >
                 Tweet
                 </a>*/ ?>
-                <a href="https://web.whatsapp.com/send?text=<?php echo urlencode($homeURL.'/mi-perfil/?uid='.$userID.'#mimapa3'); ?>"
+                <a href="<?php echo esc_url( 'https://web.whatsapp.com/send?text=' . rawurlencode( $homeURL . '/mi-perfil/?uid=' . absint( $userID ) . '#mimapa3' ) ); ?>"
                     target="_blank">
                     <i class="icon-whatsapp"></i>
                     <span>whatsApp</span>
@@ -280,7 +279,7 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
         <?php endif; ?>
     </div>
     <div class="map__image">
-        <?php /* <img src="<? echo get_template_directory_uri().'/assets/images/profile/mapmex.jpg'; ?>" alt=""> */ ?>
+        <?php /* <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/mapmex.jpg' ); ?>" alt=""> */ ?>
         <div id="map"></div>
     </div>
     <?php getDestinyPlaceOfGalleryUser(); ?>
@@ -293,7 +292,7 @@ $membershipOption = in_array('mapa',getSectionsPlanMember($userID));
                 if ( $message ) : ?>
                     <div class="woocommerce">
                         <div class="woocommerce-info wc-memberships-restriction-message wc-memberships-message wc-memberships-content-restricted-message">
-                            <?php echo $message; ?>    
+                            <?php echo wp_kses_post( $message ); ?>    
                         </div>
                     </div>
                 <?php
@@ -418,13 +417,12 @@ add_action('wp_head', 'metaTwitterSingle');
 // Share social (Single post & profile)(End)
 //======================================================================
 
-function getUserId(){
-    //var_dump(intval($_GET['uid']));
-    $user = wp_get_current_user();
-    if(isset($_GET['uid']))
-        if(!empty(intval($_GET['uid']))){
-            return intval($_GET['uid']);
-        }
+function getUserId() {
+    $user   = wp_get_current_user();
+    $uid    = isset( $_GET['uid'] ) ? absint( $_GET['uid'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification
+    if ( $uid > 0 ) {
+        return $uid;
+    }
     return $user->ID;
 }
 
@@ -450,21 +448,22 @@ function about_me_shortcode(){
 <!-- About me -->
 <div class="about-me">
     <p>
-        <?php echo $userdata["description"][0]; ?>
+        <?php echo wp_kses_post( $userdata['description'][0] ); ?>
     </p>
     <ul>
-        <?php if(get_field('facebook', 'user_'. $userID   )): ?>
+        <?php if ( get_field( 'facebook', 'user_' . absint( $userID ) ) ) : ?>
         <li>
-            <a href="https://www.facebook.com/<?php echo get_field('facebook', 'user_'. $userID  ); ?>" target="_blank">
+            <a href="<?php echo esc_url( 'https://www.facebook.com/' . get_field( 'facebook', 'user_' . absint( $userID ) ) ); ?>" target="_blank">
                 <i class="icon-fb-icon-fill"></i>
-                <span>/<?php echo get_field('facebook', 'user_'. $userID  ); ?></span>
+                <span>/<?php echo esc_html( get_field( 'facebook', 'user_' . absint( $userID ) ) ); ?></span>
             </a>
         </li>
         <?php endif; ?>
         <li>
-            <?php if( get_userdata($userID)->user_url) : ?>
-                 <p>Página web: <?php echo get_userdata($userID)->user_url; ?></p>
-         <?php   endif; ?>
+            <?php $userdata_obj = get_userdata( $userID ); ?>
+            <?php if ( $userdata_obj && $userdata_obj->user_url ) : ?>
+                <p><?php esc_html_e( 'Página web:', 'storefront' ); ?> <a href="<?php echo esc_url( $userdata_obj->user_url ); ?>" target="_blank"><?php echo esc_html( $userdata_obj->user_url ); ?></a></p>
+            <?php endif; ?>
         </li>
         <!-- <li>
                     <a href="#">
@@ -501,7 +500,7 @@ function about_me_shortcode(){
     <div class="activity">
         <div class="activity-action">
             <div class="activity-action__avatar">
-                <img src="<? echo get_template_directory_uri().'/assets/images/profile/profile.png'; ?>" alt="">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/profile.png' ); ?>" alt="">
 </div>
 <div class="activity-action__description">
     <div>
@@ -518,13 +517,13 @@ function about_me_shortcode(){
 </div>
 </div>
 <div class="activity-content photos">
-    <img src="<? echo get_template_directory_uri().'/assets/images/profile/mechanic-workshop.png'; ?>" alt="">
+    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/mechanic-workshop.png' ); ?>" alt="">
 </div>
 </div>
 <div class="activity">
     <div class="activity-action">
         <div class="activity-action__avatar">
-            <img src="<? echo get_template_directory_uri().'/assets/images/profile/profile.png'; ?>" alt="">
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/profile.png' ); ?>" alt="">
         </div>
         <div class="activity-action__description">
             <div>
@@ -541,7 +540,7 @@ function about_me_shortcode(){
         </div>
     </div>
     <div class="activity-content medal">
-        <img src="<? echo get_template_directory_uri().'/assets/images/profile/medalla.png'; ?>" alt="">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/medalla.png' ); ?>" alt="">
         <p>
             Alexander “Tig” Trager es un miembro de SAMCRO, ha completado 9 de los desafíos de Rodando Rutas Magicas
         </p>
@@ -550,7 +549,7 @@ function about_me_shortcode(){
 <div class="activity">
     <div class="activity-action">
         <div class="activity-action__avatar">
-            <img src="<? echo get_template_directory_uri().'/assets/images/profile/profile.png'; ?>" alt="">
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/profile.png' ); ?>" alt="">
         </div>
         <div class="activity-action__description">
             <div>
@@ -568,7 +567,7 @@ function about_me_shortcode(){
     </div>
     <div class="activity-content challengue">
 
-        <img src="<? echo get_template_directory_uri().'/assets/images/profile/challengue.png'; ?>" alt="">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/challengue.png' ); ?>" alt="">
         <div>
             <h2>
                 DESAFÍO MÉXICO ÚNICO
@@ -637,24 +636,19 @@ function my_notifications_shortcode(){
 
     <div class="notification">
         <div class="notification__icon">
-            <?php //echo $tipo; ?>
-            <i class="<?php echo $icon; ?>"></i>
+            <i class="<?php echo esc_attr( $icon ); ?>"></i>
         </div>
         <div class="notification__description">
             <p>
-                <?php echo $alerta->post_title; ?>
+                <?php echo esc_html( $alerta->post_title ); ?>
             </p>
-            <?php 
-                if($adicional  != ""): 
-            ?>
+            <?php if ( '' !== $adicional ) : ?>
             <p class="notification__custom">
-                <?php echo $adicional; ?>
-            </p> 
-            <?php 
-            endif;
-            ?>
+                <?php echo wp_kses_post( $adicional ); ?>
+            </p>
+            <?php endif; ?>
             <span>
-                <?php echo $tiempo; ?>
+                <?php echo esc_html( $tiempo ); ?>
             </span>
         </div>
     </div>
@@ -669,7 +663,7 @@ function my_notifications_shortcode(){
     <?php /*
     <div class="notification">
         <div class="notification__icon">
-            <img src="<? echo get_template_directory_uri().'/assets/images/profile/fat-check.png'; ?>" alt="">
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/fat-check.png' ); ?>" alt="">
 </div>
 <div class="notification__description">
     <p>
@@ -682,7 +676,7 @@ function my_notifications_shortcode(){
 </div>
 <div class="notification">
     <div class="notification__icon">
-        <img src="<? echo get_template_directory_uri().'/assets/images/profile/badge.png'; ?>" alt="">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/badge.png' ); ?>" alt="">
     </div>
     <div class="notification__description">
         <p>
@@ -695,7 +689,7 @@ function my_notifications_shortcode(){
 </div>
 <div class="notification">
     <div class="notification__icon">
-        <img src="<? echo get_template_directory_uri().'/assets/images/profile/medal.png'; ?>" alt="">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/medal.png' ); ?>" alt="">
     </div>
     <div class="notification__description">
         <p>
@@ -780,7 +774,7 @@ function my_achievements_shortcode($atts){
             $numCompletedChallengues = count($completedChallengues);
         endif;
         ?>
-<div class="profile-content__achievements <?php echo $atts['screen']; ?>">
+<div class="profile-content__achievements <?php echo esc_attr( $atts['screen'] ); ?>">
     <div class="profile-content__achievements-content">
         <h3>
             <div class="icon-achievements"></div>
@@ -868,13 +862,12 @@ function my_achievements_shortcode($atts){
             ?>
                 <div class="medal__content">
                     <div class="medal__image">
-                        <img src="<? echo getMedal($level); ?>" alt="">
+                        <img src="<?php echo esc_url( getMedal( $level ) ); ?>" alt="">
                     </div>
                     <div class="medal__description">
-
-                        <?php echo $name.' '.$lastName; ?>
-                        <?php if($belongsToClub && !empty($clubName)) : ?>
-                         <?php echo ", ".get_field('pertenece_club', 546)." ".strtoupper($clubName);?>
+                        <?php echo esc_html( $name . ' ' . $lastName ); ?>
+                        <?php if ( $belongsToClub && ! empty( $clubName ) ) : ?>
+                            <?php echo ', ' . esc_html( get_field( 'pertenece_club', 546 ) . ' ' . strtoupper( $clubName ) ); ?>
                         <?php endif; ?>
                         <?php 
 
@@ -891,7 +884,7 @@ function my_achievements_shortcode($atts){
                             endif;
                         ?>
                         ,
-                        <?php echo $text." "; ?>
+                        <?php echo esc_html( $text . ' ' ); ?>
                         
                         <?php 
                             //echo $range_down_level." "; 
@@ -926,7 +919,7 @@ function my_achievements_shortcode($atts){
                             if ( $message ) : ?>
                                 <div class="woocommerce">
                                     <div class="woocommerce-info wc-memberships-restriction-message wc-memberships-message wc-memberships-content-restricted-message">
-                                        <?php echo $message; ?>    
+                                        <?php echo wp_kses_post( $message ); ?>    
                                     </div>
                                 </div>
                             <?php
@@ -1007,7 +1000,7 @@ function my_achievements_shortcode($atts){
                         <?php 
                                         /*
                                             <div class="challenge-m">
-                                                <img src="<? echo get_template_directory_uri().'/assets/images/profile/arenaymar.png'; ?>"
+                                                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/arenaymar.png' ); ?>"
                         alt="">
                     </div>
                     */
@@ -1035,7 +1028,7 @@ function my_achievements_shortcode($atts){
                         if ( $message ) : ?>
                             <div class="woocommerce">
                                 <div class="woocommerce-info wc-memberships-restriction-message wc-memberships-message wc-memberships-content-restricted-message">
-                                    <?php echo $message; ?>    
+                                    <?php echo wp_kses_post( $message ); ?>    
                                 </div>
                             </div>
                         <?php
@@ -1088,7 +1081,7 @@ function my_achievements_shortcode($atts){
                         if ( $message ) : ?>
                             <div class="woocommerce">
                                 <div class="woocommerce-info wc-memberships-restriction-message wc-memberships-message wc-memberships-content-restricted-message">
-                                    <?php echo $message; ?>    
+                                    <?php echo wp_kses_post( $message ); ?>    
                                 </div>
                             </div>
                         <?php
@@ -1306,8 +1299,7 @@ add_action('wp_ajax_nopriv_delete_garage_item', 'delete_garage_item');
 function delete_garage_item() {
     check_ajax_referer( 'rrm_delete_garage_item', 'nonce' );
     // Obtener el ID de la entrada enviado por la solicitud AJAX
-    $entry_id = isset($_POST['entry_id']) ? intval($_POST['entry_id']) : 0;
-    //$entry_id = 0;
+    $entry_id = isset( $_POST['entry_id'] ) ? absint( $_POST['entry_id'] ) : 0;
     // Verificar si el ID de la entrada es válido
     if ($entry_id > 0) {
         // Eliminar la entrada del CPT
@@ -1348,7 +1340,8 @@ add_action('wp_ajax_nopriv_update_profile', 'update_profile');
 function update_profile(){
     check_ajax_referer( 'rrm_update_profile', 'nonce' );
     $user_id = get_current_user_id();
-    parse_str($_POST['form_data'], $arr_data_profile);
+    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- parse_str output is sanitized field-by-field below.
+    parse_str( wp_unslash( $_POST['form_data'] ), $arr_data_profile ); // phpcs:ignore WordPress.Security.NonceVerification
 
     //Cambiar de format la fecha
     $arrayDate = array_reverse(explode('-',$arr_data_profile['update_date_birth'],3));
@@ -1616,13 +1609,13 @@ add_action('wp_ajax_nopriv_edit_garage_item', 'edit_garage_item');
 
 function edit_garage_item() {
     check_ajax_referer( 'rrm_edit_garage_item', 'nonce' );
-    $entryId = isset($_POST['entry_id']) ? intval($_POST['entry_id']) : 0;
-    $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
-    $color = isset($_POST['color']) ? intval($_POST['color']) : 0;
-    $model = isset($_POST['model']) ? intval($_POST['model']) : 0;
-    $brand = isset($_POST['brand']) ? intval($_POST['brand']) : 0;
-    $status = $_POST["status"]; 
-    $style = $_POST["style"]; 
+    $entryId = isset( $_POST['entry_id'] ) ? absint( $_POST['entry_id'] ) : 0;
+    $name    = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+    $color   = isset( $_POST['color'] ) ? absint( $_POST['color'] ) : 0;
+    $model   = isset( $_POST['model'] ) ? absint( $_POST['model'] ) : 0;
+    $brand   = isset( $_POST['brand'] ) ? absint( $_POST['brand'] ) : 0;
+    $status  = isset( $_POST['status'] ) ? absint( $_POST['status'] ) : 0;
+    $style   = isset( $_POST['style'] ) ? absint( $_POST['style'] ) : 0;
     
     $user = wp_get_current_user();
 
@@ -1706,9 +1699,7 @@ add_action('wp_ajax_nopriv_edit_challengue', 'edit_challengue');
 
 function edit_challengue() {
     check_ajax_referer( 'rrm_edit_challengue', 'nonce' );
-    $post_id = isset($_POST['entry_id']) ? intval($_POST['entry_id']) : 0;
-    
-    //$user = wp_get_current_user();
+    $post_id = isset( $_POST['entry_id'] ) ? absint( $_POST['entry_id'] ) : 0;
 
     if (
         $post_id > 0
@@ -1775,11 +1766,11 @@ function save_challengue(){
     check_ajax_referer( 'rrm_save_challengue', 'nonce' );
     global $wpdb;
     $tableGalerias = $wpdb->prefix.'galerias_migration';
-    $challengueTitle = isset($_POST['challengueTitle']) ? sanitize_text_field($_POST['challengueTitle']) : '';
-    $challengueDescription = isset($_POST['challengueDescription']) ? sanitize_text_field($_POST['challengueDescription']) : '';
-    $challengueChallengue = isset($_POST['challengueChallengue']) ? intval($_POST['challengueChallengue']) : 0;
-    $challengueState = isset($_POST['challengueState']) ? intval($_POST['challengueState']) : 0;
-    $challengueActivity = isset($_POST['challengueActivity']) ? intval($_POST['challengueActivity']) : 0;
+    $challengueTitle       = isset( $_POST['challengueTitle'] ) ? sanitize_text_field( wp_unslash( $_POST['challengueTitle'] ) ) : '';
+    $challengueDescription = isset( $_POST['challengueDescription'] ) ? sanitize_textarea_field( wp_unslash( $_POST['challengueDescription'] ) ) : '';
+    $challengueChallengue  = isset( $_POST['challengueChallengue'] ) ? absint( $_POST['challengueChallengue'] ) : 0;
+    $challengueState       = isset( $_POST['challengueState'] ) ? absint( $_POST['challengueState'] ) : 0;
+    $challengueActivity    = isset( $_POST['challengueActivity'] ) ? absint( $_POST['challengueActivity'] ) : 0;
     
     $user = wp_get_current_user();
     $user_id = get_current_user_id();
@@ -1957,37 +1948,37 @@ function my_comments_open( $open, $post_id ) {
  * Se obtiene el id del desafio en base al nombre del post,lo habia colocado con el id pero se cambiaba 
 */
 
-function getMagicTownRoaded(){
-    // Lo coloque asi por que se cambiaba el id del post
-    //$post = get_page_by_title('Desafío Pueblos Mágicos RRM', null , 'desafios');
-    //var_dump($post);
-    //$user = wp_get_current_user();
-    $userID = getUserId();
-    //var_dump($userID);
-    $args3 = array( 
-        'post_type' => 'galerias',
-        'post_status' => 'publish', 
-        'post_per_page' => -1,
-        'nopaging' => true,
-        'meta_query' => array(
+function getMagicTownRoaded() {
+    $userID        = getUserId();
+    $transient_key = 'rrm_magic_towns_' . (int) $userID;
+    $cached        = get_transient( $transient_key );
+    if ( false !== $cached ) {
+        return (int) $cached;
+    }
+
+    $args3 = array(
+        'post_type'   => 'galerias',
+        'post_status' => 'publish',
+        'nopaging'    => true,
+        'meta_query'  => array(
             'relation' => 'AND',
-                array(
-                    'key' => 'rodador',
-                    //'value' => $user->ID,
-                    'value' => $userID,
-                    'compare' => '='
-                ),
-                array(
-                    'key' => 'reto',
-                    'value' => 26513, //Id de desafios de pueblos mágicos
-                    'compare' => '='
-                )
-        )
+            array(
+                'key'     => 'rodador',
+                'value'   => $userID,
+                'compare' => '=',
+            ),
+            array(
+                'key'     => 'reto',
+                'value'   => 26513, // Id de desafios de pueblos mágicos
+                'compare' => '=',
+            ),
+        ),
     );
-        
+
     $posts_array3 = new WP_Query( $args3 );
-    //var_dump($posts_array3);
-    return $posts_array3->post_count;
+    $count        = $posts_array3->post_count;
+    set_transient( $transient_key, $count, 12 * HOUR_IN_SECONDS );
+    return $count;
 }
 
 //======================================================================
@@ -2002,30 +1993,26 @@ function getMagicTownRoaded(){
  * Obtener la lista de los desafíos para mostrar en los dropdown, con la restricción de la membresía.
 */
 
-function get_challengues(){
-    
-    //$results_transient_challengues = get_transient('challengues_transient');
+function get_challengues() {
+    $user_id = get_current_user_id();
+    // Include a generation key so the cache is busted globally when desafios change.
+    $gen           = (int) get_option( 'rrm_challengues_gen', 0 );
+    $transient_key = 'rrm_challengues_' . $user_id . '_' . $gen;
+    $cached        = get_transient( $transient_key );
+    if ( false !== $cached ) {
+        return $cached;
+    }
 
-    //if (false === $results_transient_challengues) {
-        // El transient no existe, ejecutar la consulta
-        $args = array(
-            // Configura los argumentos de tu consulta WP_Query
-            'post_type' => 'desafios',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'post__in'=> getAvalaiblesDestinosPlanMember(get_current_user_id())
-        );
-        $query = new WP_Query($args);
+    $args = array(
+        'post_type'      => 'desafios',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'post__in'       => getAvalaiblesDestinosPlanMember( $user_id ),
+    );
+    $query = new WP_Query( $args );
 
-        // Guardar los resultados de la consulta en un transient
-        //set_transient('challengues_transient', $query, 86400);
-
-        // Devolver la consulta completa
-        return $query;
-//    } else {
-        // El transient existe, devolver los resultados almacenados en él
-  //      return $results_transient_challengues;
-//    }
+    set_transient( $transient_key, $query, 12 * HOUR_IN_SECONDS );
+    return $query;
 }
 
 //======================================================================
@@ -2041,30 +2028,21 @@ function get_challengues(){
  * Obtener la lista de los desafíos para mostrar en los dropdown 
 */
 
-function get_all_challengues(){
-    
-    //$results_transient_challengues = get_transient('challengues_transient');
+function get_all_challengues() {
+    $cached = get_transient( 'rrm_all_challengues' );
+    if ( false !== $cached ) {
+        return $cached;
+    }
 
-    //if (false === $results_transient_challengues) {
-        // El transient no existe, ejecutar la consulta
-        $args = array(
-            // Configura los argumentos de tu consulta WP_Query
-            'post_type' => 'desafios',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            //'post__in'=> getAvalaiblesDestinosPlanMember(get_current_user_id())
-        );
-        $query = new WP_Query($args);
+    $args = array(
+        'post_type'      => 'desafios',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+    );
+    $query = new WP_Query( $args );
 
-        // Guardar los resultados de la consulta en un transient
-        //set_transient('challengues_transient', $query, 86400);
-
-        // Devolver la consulta completa
-        return $query;
-//    } else {
-        // El transient existe, devolver los resultados almacenados en él
-  //      return $results_transient_challengues;
-//    }
+    set_transient( 'rrm_all_challengues', $query, 24 * HOUR_IN_SECONDS );
+    return $query;
 }
 
 //======================================================================
@@ -2145,11 +2123,11 @@ function post_aproval_shortcode(){
 
 
 
-<span id="total-posts-count"><?php echo $post_per_page; ?></span>
+<span id="total-posts-count"><?php echo absint( $post_per_page ); ?></span>
 <?php
     }
     ?>
-<?
+<?php
     $content = ob_get_clean();
 
 	return $content;
@@ -2187,10 +2165,8 @@ function ajaxNextGalleryPosts(){
         );
 
         //Get offset
-        if( ! empty( $_GET['post_offset'] ) ) {
-
-            $offset = $_GET['post_offset'];
-            $args['offset'] = $offset;
+        if ( ! empty( $_GET['post_offset'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+            $args['offset']         = absint( $_GET['post_offset'] ); // phpcs:ignore WordPress.Security.NonceVerification
             $args['posts_per_page'] = 5;
         }
 
@@ -2213,7 +2189,7 @@ function ajaxNextGalleryPosts(){
 <div class="activity">
     <div class="activity-action">
         <div class="activity-action__avatar">
-            <?php /*<img src="<? echo get_template_directory_uri().'/assets/images/profile/profile.png'; ?>" alt=""> */
+            <?php /*<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/profile.png' ); ?>" alt=""> */
             ?>
             <?php 
                                 echo get_avatar( $userID,50,'',false); 
@@ -2237,7 +2213,7 @@ function ajaxNextGalleryPosts(){
     <div class="activity-content photos">
         <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID(), "last-activity-gallery")); ?>"
             alt="desafio" />
-        <?php /*<img src="<? echo get_template_directory_uri().'/assets/images/profile/mechanic-workshop.png'; ?>"
+        <?php /*<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/mechanic-workshop.png' ); ?>"
         alt=""> */ ?>
     </div>
 </div>
@@ -2289,10 +2265,8 @@ function ajaxNextPostsAproval() {
         );
 
         //Get offset
-        if( ! empty( $_GET['post_offset'] ) ) {
-
-            $offset = $_GET['post_offset'];
-            $args['offset'] = $offset;
+        if ( ! empty( $_GET['post_offset'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+            $args['offset']         = absint( $_GET['post_offset'] ); // phpcs:ignore WordPress.Security.NonceVerification
             $args['posts_per_page'] = 5;
         }
 
@@ -2382,7 +2356,7 @@ function last_posts_gallery($userID){
 <div class="activity">
     <div class="activity-action">
         <div class="activity-action__avatar">
-            <?php /*<img src="<? echo get_template_directory_uri().'/assets/images/profile/profile.png'; ?>" alt=""> */
+            <?php /*<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/profile.png' ); ?>" alt=""> */
             ?>
             <?php 
                             echo get_avatar( $userID ,50,'',false); 
@@ -2406,7 +2380,7 @@ function last_posts_gallery($userID){
     <div class="activity-content photos">
         <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID(), "last-activity-gallery")); ?>"
             alt="desafio" />
-        <?php /*<img src="<? echo get_template_directory_uri().'/assets/images/profile/mechanic-workshop.png'; ?>"
+        <?php /*<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/profile/mechanic-workshop.png' ); ?>"
         alt=""> */ ?>
     </div>
 </div>
@@ -2428,7 +2402,7 @@ function last_posts_gallery($userID){
 <?php
     }
     ?>
-<span id="total-posts-count-gallery"><?php echo $count; ?></span>
+<span id="total-posts-count-gallery"><?php echo absint( $count ); ?></span>
 <?php
     $content = ob_get_clean();
 
@@ -2512,17 +2486,22 @@ function save_data_challengue_checkboxes($user_id) {
     
     if(!is_array($challengues_selected))
         $challengues_selected=array();
-    if(isset($_POST['challengue_posts'])){
-        foreach ($_POST['challengue_posts'] as $challenge) {
-            if (!in_array($challenge, $challengues_selected)) {
-                $post = get_post($challenge);
-                save_new_alert($user_id, 'desafio', $post->post_title.' ha sido aprobado.');
+    // phpcs:ignore WordPress.Security.NonceVerification -- Nonce verified by WordPress admin form submission.
+    $challengue_posts = isset( $_POST['challengue_posts'] ) ? array_map( 'absint', (array) $_POST['challengue_posts'] ) : array();
+
+    foreach ( $challengue_posts as $challenge ) {
+        if ( ! in_array( $challenge, $challengues_selected, true ) ) {
+            $post = get_post( $challenge );
+            if ( $post ) {
+                save_new_alert( $user_id, 'desafio', $post->post_title . ' ha sido aprobado.' );
                 $user = get_userdata( $user_id );
-                send_mail_notification($user->user_email, 'Desafio Aprobado', $post->post_title.' ha sido aprobado.',$user->display_name);
+                if ( $user ) {
+                    send_mail_notification( $user->user_email, 'Desafio Aprobado', $post->post_title . ' ha sido aprobado.', $user->display_name );
+                }
             }
         }
     }
-    update_user_meta($user_id, 'challengues_selected', isset($_POST['challengue_posts']) ? $_POST['challengue_posts'] : array());
+    update_user_meta( $user_id, 'challengues_selected', $challengue_posts );
     
     
     
@@ -2604,7 +2583,8 @@ function saveOriginCountryUser($user_id) {
     if (!current_user_can('edit_user', $user_id)) {
         return false;
     }
-    update_user_meta($user_id, 'user_country', $_POST['user_country']);
+    $user_country = isset( $_POST['user_country'] ) ? sanitize_text_field( wp_unslash( $_POST['user_country'] ) ) : '';
+    update_user_meta( $user_id, 'user_country', $user_country );
 }
 
 add_action('personal_options_update', 'saveOriginCountryUser');
@@ -2728,38 +2708,39 @@ function progressChallengue($idUser){
  * Se obtienen los post de galería que han sido aprobados, agrupados por desafío
 */
 
-function userGalleryGroupedByChallengue($userId){
+function userGalleryGroupedByChallengue( $userId ) {
+    $grouped_posts = array();
+    if ( empty( $userId ) ) {
+        return $grouped_posts;
+    }
 
-  $grouped_posts = array();
-  if ( !empty($userId)  ) {
-  
-      $args = array( 
-          //'author' => $user->ID,
-          'post_type' => 'galerias',
-          'post_status' => 'publish', 
-          'meta_key'      => 'rodador',
-          'meta_value'    => $userId,
-          'numberposts'      => -1,
-          'nopaging' => true
-      );
+    $transient_key = 'rrm_gallery_grouped_' . (int) $userId;
+    $cached        = get_transient( $transient_key );
+    if ( false !== $cached ) {
+        return $cached;
+    }
 
-      $posts_array = get_posts( $args );
-      // echo "<pre>";
-      // var_dump($posts_array);
-      // echo "</pre>";
+    $args = array(
+        'post_type'   => 'galerias',
+        'post_status' => 'publish',
+        'meta_key'    => 'rodador',
+        'meta_value'  => $userId,
+        'numberposts' => -1,
+        'nopaging'    => true,
+    );
 
-      foreach( $posts_array as $the_post ) {
-          $reto = get_field('reto', $the_post->ID);
-          
-          if( !isset($grouped_posts[$reto]) ){
-              $grouped_posts[$reto] = array();
-          }
-          
-          $grouped_posts[$reto][] = $the_post;
-      }
-  }
+    $posts_array = get_posts( $args );
 
-  return $grouped_posts;
+    foreach ( $posts_array as $the_post ) {
+        $reto = get_field( 'reto', $the_post->ID );
+        if ( ! isset( $grouped_posts[ $reto ] ) ) {
+            $grouped_posts[ $reto ] = array();
+        }
+        $grouped_posts[ $reto ][] = $the_post;
+    }
+
+    set_transient( $transient_key, $grouped_posts, 12 * HOUR_IN_SECONDS );
+    return $grouped_posts;
 }
 
 //======================================================================
@@ -3748,9 +3729,9 @@ add_action('wp_ajax_nopriv_delete_post_gallery', 'delete_post_gallery');
 function delete_post_gallery() {
     check_ajax_referer( 'rrm_delete_post_gallery', 'nonce' );
     global $wpdb;
-    $post_id = $_POST['post_id'];
-    $user_id_logged = $_POST['user_id_logged'];
-    $wheelerId = get_field('rodador', $post_id);
+    $post_id        = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+    $user_id_logged = isset( $_POST['user_id_logged'] ) ? absint( $_POST['user_id_logged'] ) : 0;
+    $wheelerId      = get_field( 'rodador', $post_id );
 
     $deleteStatusPost = false;
 
@@ -3786,8 +3767,8 @@ add_action('wp_ajax_nopriv_filtered_options_upload_photo', 'filtered_options_upl
 function filtered_options_upload_photo(){
     check_ajax_referer( 'rrm_filtered_options_upload_photo', 'nonce' );
 
-    $id_desafio = $_POST['challengue_id'];
-    // Se necesita el id del desafio 
+    $id_desafio = isset( $_POST['challengue_id'] ) ? absint( $_POST['challengue_id'] ) : 0;
+    // Se necesita el id del desafio
     //var_dump($id_desafio);
     if (is_user_logged_in()) {
         //Obtener el id del usuario logueado
@@ -3996,14 +3977,14 @@ function mx_local_pickup_instructions_order_email( $order, $sent_to_admin, $plai
                 $url_google_maps_direction_pickup_store = get_field('url_google_maps_direction_pickup_store',546);
                 $texto_direction_enlace_google_maps = get_field('texto_direction_enlace_google_maps',546);
 
-            ?><h2><?php echo $titulo_direction_pickup_store; ?></h2>
-            <p><?php echo $instrucciones_direction_pickup_store; ?></p>
+            ?><h2><?php echo esc_html( $titulo_direction_pickup_store ); ?></h2>
+            <p><?php echo wp_kses_post( $instrucciones_direction_pickup_store ); ?></p>
             <p>
-                <?php echo $calle_direction_pickup_store; ?><br/>
-                <?php echo $colonia_direction_pickup_store; ?><br/>
-                <?php echo $ciudad_direction_pickup_store.','.$estado_direction_pickup_store; ?><br/><br/>
+                <?php echo esc_html( $calle_direction_pickup_store ); ?><br/>
+                <?php echo esc_html( $colonia_direction_pickup_store ); ?><br/>
+                <?php echo esc_html( $ciudad_direction_pickup_store . ',' . $estado_direction_pickup_store ); ?><br/><br/>
             </p>
-            <p><a href="<?php echo $url_google_maps_direction_pickup_store; ?>" target="_blank"><?php echo $texto_direction_enlace_google_maps; ?></a></p>
+            <p><a href="<?php echo esc_url( $url_google_maps_direction_pickup_store ); ?>" target="_blank"><?php echo esc_html( $texto_direction_enlace_google_maps ); ?></a></p>
             <?php
             }
         }

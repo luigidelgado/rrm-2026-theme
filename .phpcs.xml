@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<ruleset name="RRM 2026 Theme">
+    <description>WordPress Coding Standards para el tema RRM 2026</description>
+
+    <!-- Archivos a analizar -->
+    <file>.</file>
+
+    <!-- Excluir directorios de terceros y build -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/assets/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/assets/dist/*</exclude-pattern>
+    <exclude-pattern>*/profilegrid-user-profiles-groups-and-communities/*</exclude-pattern>
+    <exclude-pattern>*/inc/nux/*</exclude-pattern>
+    <exclude-pattern>*/inc/customizer/*</exclude-pattern>
+    <exclude-pattern>*/inc/class-storefront.php</exclude-pattern>
+    <exclude-pattern>*/inc/storefront-*.php</exclude-pattern>
+    <exclude-pattern>*/inc/wordpress-shims.php</exclude-pattern>
+    <exclude-pattern>*/inc/woocommerce/*</exclude-pattern>
+
+    <!-- Solo archivos PHP -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Estándar WordPress -->
+    <rule ref="WordPress">
+        <!-- Permitir short ternary ya que es PHP 5.4+ -->
+        <exclude name="Universal.Operators.DisallowShortTernary"/>
+    </rule>
+
+    <!-- Prefijo del tema -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="rrm"/>
+                <element value="rr"/>
+                <element value="storefront"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Text domain -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="storefront"/>
+                <element value="woocommerce"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Versión mínima de PHP -->
+    <config name="minimum_supported_wp_version" value="6.0"/>
+    <config name="testVersion" value="8.0-"/>
+
+</ruleset>
